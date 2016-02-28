@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd
+	   					   http://www.springframework.org/schema/tx
+	   					   http://www.springframework.org/schema/tx/spring-tx.xsd
+	   					   http://www.springframework.org/schema/context
+	   					   http://www.springframework.org/schema/context/spring-context.xsd
+	   					   http://www.springframework.org/schema/aop
+	   					   http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<context:component-scan base-package="dessert" />
+
+	<import resource="spring-hibernate.xml" />
+	
+	<!-- controller -->
+	<!-- <bean id="testController" class="dessert.controller.ajax.TestController" scope="prototype" /> -->
+	
+	
+
+	<!-- service -->
+	<!-- <bean id="employeeService" class="dessert.service.impl.EmployeeServiceImpl"/>
+	<bean id="memberService" class="dessert.service.impl.MemberServiceImpl"/> -->
+	
+	<!-- dao -->
+	<!-- <bean id="memberDao" class="dessert.dao.impl.MemberDaoImpl" />
+	<bean id="accountDao" class="dessert.dao.impl.AccountDaoImpl" />
+	<bean id="bankcardDao" class="dessert.dao.impl.BankcardDaoImpl" />
+	<bean id="CardinfoDaoImpl" class="dessert.dao.impl.CardinfoDaoImpl" />
+	<bean id="EmployeeDaoImpl" class="dessert.dao.impl.EmployeeDaoImpl" />
+	<bean id="InventoryDaoImpl" class="dessert.dao.impl.InventoryDaoImpl" />
+	<bean id="memberDao" class="dessert.dao.impl.MemberDaoImpl" />
+	<bean id="memberDao" class="dessert.dao.impl.MemberDaoImpl" />
+	<bean id="memberDao" class="dessert.dao.impl.MemberDaoImpl" />
+ -->
+</beans>
