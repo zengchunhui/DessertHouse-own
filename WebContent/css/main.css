@@ -137,7 +137,7 @@ input[type="radio"] {
 	background-color:#ffd7be;
 }
 
-#nav-btn-active {
+.nav-btn-active {
 	background-color: #fcf4f4;
 }
 

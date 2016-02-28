@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import dessert.dao.InventoryDao;
 import dessert.entity.Inventory;
+import dessert.util.Util;
 
 @Repository
 @Transactional
@@ -23,7 +24,8 @@ public class InventoryDaoImpl extends BaseDaoImpl<Inventory> implements Inventor
 		Session session = sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(Inventory.class);
 		criteria.add(Restrictions.eq("s_id", ID));
-		criteria.add(Restrictions.eq("s_date", date));
+		// criteria.add(Restrictions.eq("s_date", date));
+		criteria.add(Restrictions.between("s_date", date, Util.theDateWhinday(date)));
 		criteria.addOrder(Order.asc("p_num"));
 		return criteria.list();
 	}

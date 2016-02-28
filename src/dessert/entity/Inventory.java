@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity(name = "inventory")
 public class Inventory {
 	@Id
@@ -15,13 +17,16 @@ public class Inventory {
 	private int s_id;
 	private String p_name;
 	private int p_num;
+	@DateTimeFormat(style="yyyy-MM-dd")
 	private Date s_date;
+	private double price;
 
 	public void setFromPlan(Plan plan){
 		setS_id(plan.getS_id());
 		setP_name(plan.getP_name());
 		setP_num(plan.getP_num());
 		setS_date(plan.getPlandate());
+		setPrice(plan.getPrice());
 	}
 	
 	public int getId() {
@@ -58,6 +63,14 @@ public class Inventory {
 
 	public void setS_date(Date s_date) {
 		this.s_date = s_date;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 }

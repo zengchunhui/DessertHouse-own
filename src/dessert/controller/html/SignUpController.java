@@ -64,6 +64,8 @@ public class SignUpController extends HtmlController{
 			List<InventoryRVO> secondList=commodityService.getByNameandDate(storeName[0], Util.theDateAfterday(date, 1));
 			List<InventoryRVO> thirdList=commodityService.getByNameandDate(storeName[0], Util.theDateAfterday(date, 2));
 			
+			sc.setAttribute(Configure.VISITED, storeName[0]);
+			sc.setAttribute(Configure.STORE_NAME, storeName);
 			sc.setAttribute(Configure.DATE_FIRST,firstList);
 			sc.setAttribute(Configure.DATE_SECOND, secondList);
 			sc.setAttribute(Configure.DATE_THIRD, thirdList);

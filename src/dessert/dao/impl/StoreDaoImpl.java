@@ -18,7 +18,7 @@ public class StoreDaoImpl extends BaseDaoImpl<Store> implements StoreDao{
 
 	@Override
 	public Store getByName(String name) {
-		return getByColumn(Store.class, "address", name);
+		return getByColumn(Store.class, "name", name);
 	}
 
 }

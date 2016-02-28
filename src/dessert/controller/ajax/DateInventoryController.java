@@ -16,7 +16,7 @@ import dessert.service.CommodityService;
 import dessert.util.FormValidator;
 import dessert.util.Util;
 
-@Controller("DateInventory")
+@Controller("dateInventory")
 public class DateInventoryController extends AjaxController {
 
 	private static final long serialVersionUID = 1L;

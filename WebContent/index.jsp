@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/bootstrap.css">
 <link rel="stylesheet" href="./css/login.css">
+
+<script type="text/javascript" src="./js/jquery-2.1.4.min.js"></script>
+<script src="./js/bootstrap.js"></script>
+<script type="text/javascript" src="./js/login.js"></script>
 </head>
 <body>
 
@@ -69,9 +73,7 @@
 		</div>
 	</div>
 	<img src="./img/login-dessert.png" alt="dessert" id="img-dessert">
-
-	<script src="./js/bootstrap.js"></script>
-	<script src="./js/jquery-2.1.4.min.js"></script>
+	
 	<script>
 		$(document).ready(function() {
 			$(".register-wrapper").hide();

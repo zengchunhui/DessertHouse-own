@@ -1,13 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-	
+<%@ page import="dessert.rvo.commodity.InventoryRVO"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Book</title>
-	<link rel="stylesheet" type="text/css" href="../css/reset.css">
-	<link rel="stylesheet" type="text/css" href="../css/main.css">
+<meta charset="UTF-8">
+<title>Book</title>
+<link rel="stylesheet" type="text/css" href="../css/reset.css">
+<link rel="stylesheet" type="text/css" href="../css/main.css">
+<%
+	ServletContext sc = request.getServletContext();
+	String visited_store = (String) sc.getAttribute("visited");
+	String[] storeName = (String[]) sc.getAttribute("store_name");
+	List<InventoryRVO> firstList = (List<InventoryRVO>) sc.getAttribute("date_first");
+	List<InventoryRVO> secondList = (List<InventoryRVO>) sc.getAttribute("date_second");
+	List<InventoryRVO> thirdList = (List<InventoryRVO>) sc.getAttribute("date_third");
+%>
+<script>
+	var visited =
+<%=visited_store%>
+	;
+</script>
+
 </head>
 <body>
 	<div class="left-bar">
@@ -15,53 +30,180 @@
 			<img src="../img/logo.png">
 		</div>
 		<div class="nav-btn-group">
-			<a class="nav-btn" href="javascript:void(0)">仙林分店</a>
-			<a class="nav-btn" href="javascript:void(0)">上海路分店</a>
-			<a class="nav-btn" href="javascript:void(0)">广州路分店</a>
-			<a class="nav-btn" href="javascript:void(0)">白下分店</a>
-			<a class="nav-btn" href="javascript:void(0)">仙林分店</a>
-			<a class="nav-btn" href="javascript:void(0)">仙林分店</a>
-			<a class="nav-btn" href="javascript:void(0)">仙林分店</a>
+
+			<%
+				for (int i = 0; i < storeName.length; i++) {
+					if(storeName[i].equals(visited_store)){
+						%>
+						<a class="nav-btn nav-btn-active" href="javascript:void(0)"
+							id="<%="nav-" + storeName[i]%>>"><%=storeName[i]%></a>
+					<% }else{%>
+						<a class="nav-btn" href="javascript:void(0)"
+							id="<%="nav-" + storeName[i]%>>"><%=storeName[i]%></a>
+					<%}%>
+			<a class="nav-btn" href="javascript:void(0)"
+				id="<%="nav-" + storeName[i]%>>"><%=storeName[i]%></a>
+			<%
+				}
+			%>
+			<a class="nav-btn" href="javascript:void(0)">更多店面</a>
 		</div>
 
-		<a class="manage-btn" href="javascript:void">
-			<span>个人管理</span>
-			<img src="../img/signout.png">
+		<a class="manage-btn" href="javascript:void(0)"> <span>个人管理</span> <img
+			src="../img/signout.png">
 			<div class="clear"></div>
 		</a>
 	</div>
-
 	<div class="right-site">
 		<div class="tab-btn-group">
-			<a class="tab-btn" href="javascript:void(0)">今天</a>
-			<a class="tab-btn tab-btn-active" href="javascript:void(0)">明天</a>
-			<a class="tab-btn" href="javascript:void(0)">后天</a>
+			<a class="tab-btn tab-btn-active" href="javascript:void(0)"
+				id="tab-firstday"> 
+				<%
+ 					String[] date = firstList.get(0).getS_date().split("-");
+ 					String show_date = date[1] + "-" + date[2];
+ 					out.print(show_date);
+ 				%>
+			</a> <a class="tab-btn" href="javascript:void(0)" id="tab-secondday">
+				<%
+					date = secondList.get(0).getS_date().split("-");
+					show_date = date[1] + "-" + date[2];
+					out.print(show_date);
+				%>
+			</a> <a class="tab-btn" href="javascript:void(0)" id="tab-thirdday">
+				<%
+					date = thirdList.get(0).getS_date().split("-");
+					show_date = date[1] + "-" + date[2];
+					out.print(show_date);
+				%>
+			</a>
 		</div>
 		<div class="content">
 			<div class="wrapper">
 				<div class="tool-bar">
-					<a class="btn tool-btn" href="javascript:void(0)">我的预订单</a>
+					<a class="btn tool-btn" href="javascript:void(0)">购物车</a>
 					<div class="clear"></div>
 				</div>
-				<table class="book-table" border="1">
+				<%
+					if (firstList.size() <= 0) {
+				%>
+				<form class="info-form">
+					<ul>
+						<li><span>非常抱歉</span></li>
+						<li><span>此日期尚不支持预定</span></li>
+					</ul>
+				</form>
+				<%
+					} else {
+				%>
+				<table class="book-table" id="table-first" border="1">
 					<tr>
 						<th>名称</th>
 						<th>价格</th>
 						<th>剩余数量</th>
 						<th>预定</th>
 					</tr>
+					<%
+						for (int i = 0; i < firstList.size(); i++) {
+					%>
 					<tr>
-						<td>马卡龙</td>
-						<td>100</td>
-						<td>40</td>
-						<td><img src="../img/check transparent.png"></td>
+						<td class="dessert-name-td"><%=firstList.get(i).getP_name()%></td>
+						<td class="dessert-price-td"><%=firstList.get(i).getPrice()%></td>
+						<td class="dessert-num-td"><%=firstList.get(i).getP_num()%></td>
+						<td><a class="book-btn-td"
+							id="<%=firstList.get(i).getS_date() + "-" + i%>>"><img
+								src="../img/check transparent.png"></a></td>
 					</tr>
+					<%
+						    }
+						}
+					%>
+				</table>
+
+				<%
+					if (secondList.size() <= 0) {
+				%>
+				<form class="info-form" id="table-second" style="display: none">
+					<ul>
+						<li><span>非常抱歉</span></li>
+						<li><span>此日期尚不支持预定</span></li>
+					</ul>
+				</form>
+				<%
+					} else {
+				%>
+				<table class="book-table" id="table-second" border="1"
+					style="display: none">
+					<tr>
+						<th>名称</th>
+						<th>价格</th>
+						<th>剩余数量</th>
+						<th>预定</th>
+					</tr>
+					<%
+						for (int i = 0; i < secondList.size(); i++) {
+					%>
+					<tr>
+						<td class="dessert-name-td"><%=secondList.get(i).getP_name()%></td>
+						<td class="dessert-price-td"><%=secondList.get(i).getPrice()%></td>
+						<td class="dessert-num-td"><%=secondList.get(i).getP_num()%></td>
+						<td><a class="book-btn-td"
+							id="<%=secondList.get(i).getS_date() + "-" + i%>>"><img
+								src="../img/check transparent.png"></a></td>
+					</tr>
+					<%
+						}
+						}
+					%>
+				</table>
+
+				<%
+					if (thirdList.size() <= 0) {
+				%>
+				<form class="info-form" id="table-third" style="display: none">
+					<ul>
+						<li><span>非常抱歉</span></li>
+						<li><span>此日期尚不支持预定</span></li>
+					</ul>
+				</form>
+				<%
+					} else {
+				%>
+				<table class="book-table" id="table-third" border="1"
+					style="display: none">
+					<tr>
+						<th>名称</th>
+						<th>价格</th>
+						<th>剩余数量</th>
+						<th>预定</th>
+					</tr>
+					<%
+						for (int i = 0; i < thirdList.size(); i++) {
+					%>
+					<tr>
+						<td class="dessert-name-td"><%=thirdList.get(i).getP_name()%></td>
+						<td class="dessert-price-td"><%=thirdList.get(i).getPrice()%></td>
+						<td class="dessert-num-td"><%=thirdList.get(i).getP_num()%></td>
+						<td><a class="book-btn-td"
+							id="<%=thirdList.get(i).getS_date() + "-" + i%>>"><img
+								src="../img/check transparent.png"></a></td>
+					</tr>
+					<%
+						}
+						}
+					%>
 				</table>
 			</div>
 		</div>
-
+			<form action="/Desserthouse/StoreInventory" method="post" id="store-inventory">
+				<input type="text" id="store-name" name="store-name"
+					style="display: none;"> 
+				<input type="text"
+					id="date" name="s_date" style="display: none;">
+			</form>
 
 	</div>
 	<div class="clear"></div>
+	<script src="../js/jquery-2.1.4.min.js"></script>
+	<script src="../js/book.js"></script>
 </body>
 </html>

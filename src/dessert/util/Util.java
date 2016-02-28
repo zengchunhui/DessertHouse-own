@@ -17,8 +17,15 @@ public class Util {
 		return str;
 	}
 
-	public static Timestamp getCurrentTimeStamp() {
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+	public static Date getCurrentDate() {
+		Date date=new Date();
+		String date_string=getDateString(date);
+		date=getDateFromString(date_string);
+		return date;
+	}
+	
+	public static Timestamp getCurrentTimeStamp(){
+		Timestamp timestamp=new Timestamp(System.currentTimeMillis());
 		return timestamp;
 	}
 
@@ -100,11 +107,25 @@ public class Util {
 		return date;
 	}
 	
+	
 	public static Date theDateAfterday(Date date,int num){
 		Calendar calendar=Calendar.getInstance();
 		calendar.setTime(date);
 		calendar.add(Calendar.DATE, num);
 		date=calendar.getTime();
+		return date;
+	}
+	
+	public static Date theDateWhinday(Date date){
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String string_date=getDateString(date);
+		string_date+=" 23:59:59";
+		try {
+			date=format.parse(string_date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return date;
 	}
 	

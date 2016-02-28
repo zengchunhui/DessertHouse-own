@@ -10,12 +10,14 @@ public class InventoryRVO extends ResultVO{
 	private String p_name;
 	private int p_num;
 	private String s_date;
+	private String price;
 	
 	public void setFromInventory(Inventory inventory){
 		setS_id(inventory.getId());
 		setP_name(inventory.getP_name());
 		setP_num(inventory.getP_num());
 		setS_date(Util.getDateString(inventory.getS_date()));
+		setPrice(Util.DoubleToString(inventory.getPrice()));
 	}
 	
 //	public int getId() {
@@ -47,6 +49,14 @@ public class InventoryRVO extends ResultVO{
 	}
 	public void setS_date(String s_date) {
 		this.s_date = s_date;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
 	}
 	
 	

@@ -49,8 +49,8 @@ public class Configure {
 	public static final String  DATE_SECOND			=	"date_second";
 	public static final String  DATE_THIRD			=	"date_third";
 	public static final String  AMOUNT				=	"amount";
-//	public static final String  
-	
+	public static final String  VISITED				=	"visited";
+	public static final String  PRICE				=	"price";
 	//
 	
 	public static final int  	FAIL				=	0;

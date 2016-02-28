@@ -13,5 +13,7 @@ public class ErrorCode {
 	public static final int     SDATE_IS_EMPTY			=	1000;
 	public static final int     STORENAME_IS_EMPTY		=	1100;
 	public static final int     AMOUNT_IS_EMPTY			=	1200;
-//	public static final int     AMOUNT_NOT_DOUBLE		=	1300;
+	public static final int     PRICE_IS_EMPTY			=	1300;
+	public static final int     NUM_IS_EMPTY			=	1400;
+
 }

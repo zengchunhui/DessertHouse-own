@@ -60,12 +60,16 @@ public class LoginController extends HtmlController{
 			session.setAttribute(Configure.NAME, rvo.getName());
 			session.setAttribute(Configure.STATE, rvo.getState());
 			//获得商家信息
-			Date date=new Date();
+			Date date=Util.getCurrentDate();
 			String[] storeName=storeService.getAllStoreName();
+//			System.err.println(storeName);
+//			System.err.println(date.toString());
 			List<InventoryRVO> firstList=commodityService.getByNameandDate(storeName[0], date);
 			List<InventoryRVO> secondList=commodityService.getByNameandDate(storeName[0], Util.theDateAfterday(date, 1));
 			List<InventoryRVO> thirdList=commodityService.getByNameandDate(storeName[0], Util.theDateAfterday(date, 2));
 			
+			sc.setAttribute(Configure.VISITED, storeName[0]);
+			sc.setAttribute(Configure.STORE_NAME, storeName);
 			sc.setAttribute(Configure.DATE_FIRST,firstList);
 			sc.setAttribute(Configure.DATE_SECOND, secondList);
 			sc.setAttribute(Configure.DATE_THIRD, thirdList);

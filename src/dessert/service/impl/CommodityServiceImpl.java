@@ -28,8 +28,10 @@ public class CommodityServiceImpl implements CommodityService{
 		List<InventoryRVO> resultList=new ArrayList<>();
 		Store store=storeDao.getByName(name);
 		if (store==null) {
+//			System.out.println("name error");
 			return resultList;
 		}
+//		System.out.println("store name"+store.getName());
 		List<Inventory> list=inventoryDao.getByStoreIDandDate(store.getId(), date);
 		for (int i = 0; i < list.size(); i++) {
 			InventoryRVO rvo=new InventoryRVO();
