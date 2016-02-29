@@ -72,5 +72,9 @@ public class Inventory {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+	public void sale(int num){
+		p_num=p_num-num;
+	}
 
 }

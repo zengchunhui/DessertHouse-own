@@ -5,9 +5,24 @@
     
     <struts>
     		<package name="index" namespace="/api" extends="json-default">
-    			<action name="create" class="memberJsonController" method="create">
+    			<action name="AddCart" class="addCart" method="execute">
     				<result type="json">
-    					<param name="message">message</param>
+    					<param name="root">jsonResult</param>
+    				</result>
+    			</action>
+    			<action name="ChangeCart" class="changeCart" method="execute">
+    				<result type="json">
+    					<param name="root">jsonResult</param>
+    				</result>
+    			</action>
+    			<action name="GetCart" class="getCart" method="execute">
+    				<result type="json">
+    					<param name="root">jsonResult</param>
+    				</result>
+    			</action>
+    			<action name="Reservate" class="reservate" method="execute">
+    				<result type="json">
+    					<param name="root">jsonResult</param>
     				</result>
     			</action>
     		</package>		

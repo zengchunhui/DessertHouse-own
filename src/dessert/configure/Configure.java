@@ -51,6 +51,8 @@ public class Configure {
 	public static final String  AMOUNT				=	"amount";
 	public static final String  VISITED				=	"visited";
 	public static final String  PRICE				=	"price";
+	public static final String  CART_LIST			=	"cart_list";
+	public static final String  LEFT_NUM			=	"left_num";
 	//
 	
 	public static final int  	FAIL				=	0;

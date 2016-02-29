@@ -43,9 +43,10 @@ public class Util {
 	 * @param amount 消费金额
 	 * @return 积分
 	 * 每消费10元得1分
+	 * 等级不同积分不同
 	 */
-	public static int getintegral(double amount){
-		int integral=(int)amount/10;
+	public static int getintegral(double amount,int grade){
+		int integral=((int)amount/10)*grade;
 		return integral;
 	}
 	

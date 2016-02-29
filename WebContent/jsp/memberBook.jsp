@@ -18,9 +18,7 @@
 	List<InventoryRVO> thirdList = (List<InventoryRVO>) sc.getAttribute("date_third");
 %>
 <script>
-	var visited =
-<%=visited_store%>
-	;
+	var visited ="<%=visited_store%>";
 </script>
 
 </head>
@@ -36,13 +34,11 @@
 					if(storeName[i].equals(visited_store)){
 						%>
 						<a class="nav-btn nav-btn-active" href="javascript:void(0)"
-							id="<%="nav-" + storeName[i]%>>"><%=storeName[i]%></a>
+							id="<%="nav-" + storeName[i]%>"><%=storeName[i]%></a>
 					<% }else{%>
 						<a class="nav-btn" href="javascript:void(0)"
-							id="<%="nav-" + storeName[i]%>>"><%=storeName[i]%></a>
+							id="<%="nav-" + storeName[i]%>"><%=storeName[i]%></a>
 					<%}%>
-			<a class="nav-btn" href="javascript:void(0)"
-				id="<%="nav-" + storeName[i]%>>"><%=storeName[i]%></a>
 			<%
 				}
 			%>
@@ -57,30 +53,27 @@
 	<div class="right-site">
 		<div class="tab-btn-group">
 			<a class="tab-btn tab-btn-active" href="javascript:void(0)"
-				id="tab-firstday"> 
-				<%
+				id="tab-firstday"><%
  					String[] date = firstList.get(0).getS_date().split("-");
  					String show_date = date[1] + "-" + date[2];
  					out.print(show_date);
- 				%>
-			</a> <a class="tab-btn" href="javascript:void(0)" id="tab-secondday">
-				<%
+ 				%></a> 
+				<a class="tab-btn" href="javascript:void(0)" id="tab-secondday"><%
 					date = secondList.get(0).getS_date().split("-");
 					show_date = date[1] + "-" + date[2];
 					out.print(show_date);
-				%>
-			</a> <a class="tab-btn" href="javascript:void(0)" id="tab-thirdday">
-				<%
+				%></a> 
+				<a class="tab-btn" href="javascript:void(0)" id="tab-thirdday"><%
 					date = thirdList.get(0).getS_date().split("-");
 					show_date = date[1] + "-" + date[2];
 					out.print(show_date);
-				%>
-			</a>
+					//System.out.println(show_date);
+				%></a>
 		</div>
 		<div class="content">
 			<div class="wrapper">
 				<div class="tool-bar">
-					<a class="btn tool-btn" href="javascript:void(0)">购物车</a>
+					<a class="btn tool-btn" id="tool-btn-cart" href="javascript:void(0)">购物车</a>
 					<div class="clear"></div>
 				</div>
 				<%
@@ -110,7 +103,7 @@
 						<td class="dessert-price-td"><%=firstList.get(i).getPrice()%></td>
 						<td class="dessert-num-td"><%=firstList.get(i).getP_num()%></td>
 						<td><a class="book-btn-td"
-							id="<%=firstList.get(i).getS_date() + "-" + i%>>"><img
+							id="<%=firstList.get(i).getS_date() + "-" + i%>"><img
 								src="../img/check transparent.png"></a></td>
 					</tr>
 					<%
@@ -147,7 +140,7 @@
 						<td class="dessert-price-td"><%=secondList.get(i).getPrice()%></td>
 						<td class="dessert-num-td"><%=secondList.get(i).getP_num()%></td>
 						<td><a class="book-btn-td"
-							id="<%=secondList.get(i).getS_date() + "-" + i%>>"><img
+							id="<%=secondList.get(i).getS_date() + "-" + i%>"><img
 								src="../img/check transparent.png"></a></td>
 					</tr>
 					<%
@@ -184,7 +177,7 @@
 						<td class="dessert-price-td"><%=thirdList.get(i).getPrice()%></td>
 						<td class="dessert-num-td"><%=thirdList.get(i).getP_num()%></td>
 						<td><a class="book-btn-td"
-							id="<%=thirdList.get(i).getS_date() + "-" + i%>>"><img
+							id="<%=thirdList.get(i).getS_date() + "-" + i%>"><img
 								src="../img/check transparent.png"></a></td>
 					</tr>
 					<%
@@ -195,14 +188,36 @@
 			</div>
 		</div>
 			<form action="/Desserthouse/StoreInventory" method="post" id="store-inventory">
-				<input type="text" id="store-name" name="store-name"
+				<input type="text" id="store-name" name="store_name"
 					style="display: none;"> 
 				<input type="text"
 					id="date" name="s_date" style="display: none;">
 			</form>
 
 	</div>
+
 	<div class="clear"></div>
+	<div class="modal-wrapper" style="display: none;">
+		<div class="dialog cart-dialog">
+			<div class="dialog-title">购物车</div>
+			<a class="close-btn" href="javascript:void(0)"><b></b></a>
+			<div class="cart-table">
+				<table class="book-table" id="book-table-cart" border="1">
+					<tr>
+						<th>日期</th>
+						<th>店面</th>
+						<th>名称</th>
+						<th>价格</th>
+						<th>剩余数量</th>
+						<th>预定数量</th>
+					</tr>
+				</table>
+			</div>
+			<a class="btn confirm-btn" href="javascript:void(0)">确认预订</a>
+			<div class="message"></div>
+			<div class="clear"></div>
+		</div>
+	</div>
 	<script src="../js/jquery-2.1.4.min.js"></script>
 	<script src="../js/book.js"></script>
 </body>

@@ -60,7 +60,9 @@ public class LoginController extends HtmlController{
 			session.setAttribute(Configure.NAME, rvo.getName());
 			session.setAttribute(Configure.STATE, rvo.getState());
 			//获得商家信息
-			Date date=Util.getCurrentDate();
+			//TODO
+//			Date date=Util.getCurrentDate();
+			Date date=Util.getDateFromString("2016-02-28");
 			String[] storeName=storeService.getAllStoreName();
 //			System.err.println(storeName);
 //			System.err.println(date.toString());

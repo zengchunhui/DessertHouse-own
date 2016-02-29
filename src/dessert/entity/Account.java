@@ -23,5 +23,7 @@ public double getAmount() {
 public void setAmount(double amount) {
 	this.amount = amount;
 }
-
+public void addAccount(double amount){
+	this.amount+=amount;
+}
 }

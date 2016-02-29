@@ -14,7 +14,7 @@ public class Cardinfo {
 	@ColumnDefault(value = "0")
 	private double balance;// 余额
 	@ColumnDefault(value = "0")
-	private int state;//状态
+	private int state;// 状态
 	@ColumnDefault(value = "0")
 	private double total;// 累计充值
 	@ColumnDefault(value = "0")
@@ -82,5 +82,13 @@ public class Cardinfo {
 	public void recharge(double amount) {
 		balance += amount;
 		total += amount;
+	}
+
+	public void useBalance(double money) {
+		balance = balance - money;
+	}
+
+	public void addIntegral(int num) {
+		integral += num;
 	}
 }

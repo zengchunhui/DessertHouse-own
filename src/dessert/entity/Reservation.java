@@ -10,6 +10,10 @@ import javax.persistence.Id;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import dessert.pvo.CartItemPVO;
+import dessert.util.Util;
+import javafx.geometry.Side;
+
 @Entity(name = "reservation")
 public class Reservation {
 	@Id
@@ -25,6 +29,17 @@ public class Reservation {
 	private Timestamp c_date;//预定时间
 	@DateTimeFormat(style="yyyy-MM-dd")
 	private Date s_date;//送达时间
+	
+	public Reservation(String m_id,CartItemPVO pvo,Timestamp timestamp,int s_id){
+		this.s_id=s_id;
+		this.m_id=Integer.parseInt(m_id);
+		p_name=pvo.getP_name();
+		p_num=pvo.getP_num();
+		price=pvo.getPrice();
+		this.amount=pvo.getPrice()*pvo.getP_num();
+		c_date=timestamp;
+		s_date=Util.getDateFromString(pvo.getS_date());
+	}
 	
 	public int getId() {
 		return id;
