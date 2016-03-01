@@ -1,5 +1,6 @@
 package dessert.rvo.member;
 
+import dessert.configure.Configure;
 import dessert.entity.Cardinfo;
 import dessert.rvo.ResultVO;
 import dessert.util.Util;
@@ -78,4 +79,18 @@ public class CardInfoResultVO extends ResultVO {
 		this.backCard = backCard;
 	}
 
+	public String getStateString(){
+		switch (state) {
+		case Configure.INACTIVE:
+			return "未激活";
+		case Configure.ACTIVE:
+			return "激活";
+		case Configure.PAUSE:
+			return "暂停";
+		case Configure.STOP:
+			return "停止";
+		default:
+			return "";
+		}
+	}
 }

@@ -10,12 +10,12 @@ import org.springframework.stereotype.Controller;
 
 import dessert.configure.Configure;
 import dessert.controller.AjaxController;
-import dessert.rvo.member.ToCaseResultVO;
+import dessert.rvo.member.ToCashResultVO;
 import dessert.service.MemberService;
 import dessert.util.FormValidator;
 import dessert.util.Util;
 
-@Controller("ToCash")
+@Controller("toCash")
 public class ToCashController extends AjaxController{
 
 	
@@ -31,15 +31,13 @@ public class ToCashController extends AjaxController{
 
 	@Override
 	public void validate(Map<String, String> params, FormValidator validator) {
-		HttpSession session=session();
-		validator.put(Configure.ID, session.getAttribute(Configure.ID));
 		
 	}
 
 	@Override
 	public String process(FormValidator validator) {
 		// TODO Auto-generated method stub
-		ToCaseResultVO rVo=memberService.ToCash(validator.getS(Configure.ID));
+		ToCashResultVO rVo=memberService.ToCash((String)session().getAttribute(Configure.ID));
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(Configure.SUCCESS, rVo.getSuccess());
 		map.put(Configure.MESSAGE, rVo.getMessage());

@@ -25,5 +25,30 @@
     					<param name="root">jsonResult</param>
     				</result>
     			</action>
+    			<action name="ChangeInfo" class="changeInfo" method="execute">
+    				<result type="json">
+    					<param name="root">jsonResult</param>
+    				</result>
+    			</action>
+    			<action name="ToCash" class="toCash" method="execute">
+    				<result type="json">
+    					<param name="root">jsonResult</param>
+    				</result>
+    			</action>
+    			<action name="ChangeBankcard" class="changeBankcard" method="execute">
+    				<result type="json">
+    					<param name="root">jsonResult</param>
+    				</result>
+    			</action>
+    			<action name="CardRecharge" class="cardRecharge" method="execute">
+    				<result type="json">
+    					<param name="root">jsonResult</param>
+    				</result>
+    			</action>
+    			<action name="CashRecharge" class="cashRecharge" method="execute">
+    				<result type="json">
+    					<param name="root">jsonResult</param>
+    				</result>
+    			</action>
     		</package>		
     </struts>

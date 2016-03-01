@@ -50,10 +50,9 @@ public class MemberInfoController extends HtmlController {
 			sc.setAttribute(Configure.GENDER, rvo.getGender());
 			sc.setAttribute(Configure.ADDRESS, rvo.getAddress());
 			sc.setAttribute(Configure.PHONE, rvo.getPhone());
+		} 
 			return Configure.SUCCESS;
-		} else {
-			return Configure.ERROR;
-		}
+		
 	}
 
 }

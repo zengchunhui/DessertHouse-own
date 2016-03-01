@@ -71,8 +71,10 @@ $("#tab-thirdday").on("click",function(){
 $(".book-btn-td").on("click",function(){//添加预约对象
 	$(this).children("img").attr("src","../img/check.png");
 	var storeName=visited;
+//	alert(storeName);
 	var send_date="2016-"+$(".tab-btn-active").html();
 	var p_name=$(this).parent().siblings(".dessert-name-td").html();
+//	alert(p_name);
 	var p_num=1;
 	var left_num=$(this).parent().siblings(".dessert-num-td").html();
 	var price=$(this).parent().siblings(".dessert-price-td").html();
@@ -81,7 +83,7 @@ $(".book-btn-td").on("click",function(){//添加预约对象
                 url:"/Desserthouse/api/AddCart",
                 data:{'store_name':storeName,'s_date':send_date,'p_name':p_name,'p_num':p_num,'left_num':left_num,'price':price},
                 success:function(result,textStatus){
-                    alert(result.message);
+//                    alert(result.message);
                 }
             });
 });
@@ -97,9 +99,14 @@ $("#tool-btn-cart").on("click",function(){
 //                    alert(result.root);
                     var cart_list=result.cart_list;
                     $.each(cart_list,function(idx,item){
-                    	$("#book-table-cart").append("<tr><td class=\"book-sdate-td\">"+item.s_date+"</td><td class=\"book-sname-td\">"+item.store_name+"</td>");
-                    	$("#book-table-cart").append("<td class=\"book-pname-td\">"+item.p_name+"</td><td class=\"book-price-td\">"+item.price+"</td><td class=\"book-lnum-td\">"+item.left_num+"</td>");
-                    	$("#book-table-cart").append("<td><a class=\"btn round-btn sub-btn\" style=\"line-height: 20px;\" href=\"javascript:void(0)\">-</a><input class=\"num-input\" type=\"text\" value=\""+item.p_num+"\"><a class=\"btn round-btn add-btn\" href=\"javascript:void(0)\">+</a></td></tr>");
+//                    	alert(item.p_name);
+//                    	alert(item.store_name);
+//                    	$("#book-table-cart").append("<tr><td class=\"book-sdate-td\">"+item.s_date+"</td><td class=\"book-sname-td\">"+item.store_name+"</td>");
+//                    	$("#book-table-cart").append("<td class=\"book-pname-td\">"+item.p_name+"</td><td class=\"book-price-td\">"+item.price+"</td><td class=\"book-lnum-td\">"+item.left_num+"</td>");
+//                    	$("#book-table-cart").append("<td><a class=\"btn round-btn sub-btn\" style=\"line-height: 20px;\" href=\"javascript:void(0)\">-</a><input class=\"num-input\" type=\"text\" value=\""+item.p_num+"\"><a class=\"btn round-btn add-btn\" href=\"javascript:void(0)\">+</a></td></tr>");
+                    	$("#book-table-cart").append("<tr><td class=\"book-sdate-td\">"+item.s_date+"</td><td class=\"book-sname-td\">"+item.store_name+"</td><td class=\"book-pname-td\">"+item.p_name+"</td><td class=\"book-price-td\">"+item.price+"</td><td class=\"book-lnum-td\">"+item.left_num+"</td><td><a class=\"btn round-btn sub-btn\" style=\"line-height: 20px;\" href=\"javascript:void(0)\">-</a><input class=\"num-input\" type=\"text\" value=\""+item.p_num+"\"><a class=\"btn round-btn add-btn\" href=\"javascript:void(0)\">+</a></td></tr>");
+                    
+                    
                     });
                 }
             });
@@ -107,9 +114,10 @@ $("#tool-btn-cart").on("click",function(){
 	$("body").css("overflow","hide");
 });
 
-$(".sub-btn").on("click",function(){
+$(document).on("click",".sub-btn",function(){
+//	alert("sub");
 	 var num=$(this).siblings("input").val();
-	 num=num-1;
+	 num=parseInt(num)-1;
 	 $(this).siblings("input").val(num);
 	 var send_date=$(this).parent().siblings(".book-sdate-td").html();
 	 var storeName=$(this).parent().siblings(".book-sname-td").html();
@@ -117,19 +125,24 @@ $(".sub-btn").on("click",function(){
 	 var p_num=num;
 	 var left_num=$(this).parent().siblings(".book-lnum-td").html();
 	 var price=$(this).parent().siblings(".book-price-td").html();
+	 if(parseInt(p_num)>parseInt(left_num)){
+		 alert("库存数量不足，请修改您的数量");
+		 return;
+	 }
 	 $.ajax({
                 type:"POST",
                 url:"/Desserthouse/api/ChangeCart",
                 data:{'store_name':storeName,'s_date':send_date,'p_name':p_name,'p_num':p_num,'left_num':left_num,'price':price},
                 success:function(result,textStatus){
-                    alert(result.message);
+//                    alert(result.message);
                 }
             });
 });
 
-$(".add-btn").on("click",function(){
+$(document).on("click",".add-btn",function(){
+//	alert("add");
 	 var num=$(this).siblings("input").val();
-	 num=num+1;
+	 num=parseInt(num)+1;
 	 $(this).siblings("input").val(num);
 	 var send_date=$(this).parent().siblings(".book-sdate-td").html();
 	 var storeName=$(this).parent().siblings(".book-sname-td").html();
@@ -137,15 +150,46 @@ $(".add-btn").on("click",function(){
 	 var p_num=num;
 	 var left_num=$(this).parent().siblings(".book-lnum-td").html();
 	 var price=$(this).parent().siblings(".book-price-td").html();
+	 if(parseInt(p_num)>parseInt(left_num)){
+		 alert("库存数量不足，请修改您的数量");
+		 return;
+	 }
 	 $.ajax({
                 type:"POST",
                 url:"/Desserthouse/api/ChangeCart",
                 data:{'store_name':storeName,'s_date':send_date,'p_name':p_name,'p_num':p_num,'left_num':left_num,'price':price},
                 success:function(result,textStatus){
-                    alert(result.message);
+//                    alert(result.message);
                 }
             });
 });
+
+$(document).on("change",".num-input",function(){
+//	alert("change");
+	 var num=$(this).val();
+	 alert(num);
+//	 num=parseInt(num)+1;
+//	 $(this).siblings("input").val(num);
+	 var send_date=$(this).parent().siblings(".book-sdate-td").html();
+	 var storeName=$(this).parent().siblings(".book-sname-td").html();
+	 var p_name=$(this).parent().siblings(".book-pname-td").html();
+	 var p_num=num;
+	 var left_num=$(this).parent().siblings(".book-lnum-td").html();
+	 var price=$(this).parent().siblings(".book-price-td").html();
+	 if(parseInt(p_num)>parseInt(left_num)){
+		 alert("库存数量不足，请修改您的数量");
+		 return;
+	 }
+	 $.ajax({
+                type:"POST",
+                url:"/Desserthouse/api/ChangeCart",
+                data:{'store_name':storeName,'s_date':send_date,'p_name':p_name,'p_num':p_num,'left_num':left_num,'price':price},
+                success:function(result,textStatus){
+//                    alert(result.message);
+                }
+            });
+});
+
 
 $(".close-btn").on("click",function(){
    $(".modal-wrapper").hide();
@@ -153,17 +197,16 @@ $(".close-btn").on("click",function(){
 });
 
 $(".confirm-btn").on("click",function(){
+//	alert("click");
    $.ajax({
                 type:"POST",
                 url:"/Desserthouse/api/Reservate",
                 data:{ },
                 success:function(result,textStatus){
-                    alert(result.message);
-                    $("#message").html("<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>"+result.root.message+"</div>");
-                	setTimeout(function (){
+                    	alert(result.message);
+//                    $("#message").html("<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>"+result.root.message+"</div>");
 	    				 $(".modal-wrapper").hide();
   						 $("body").css("overflow","auto");
-					}, 3999);
                 }
             });
 });

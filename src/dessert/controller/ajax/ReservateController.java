@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import dessert.configure.Configure;
-import dessert.configure.ErrorCode;
 import dessert.controller.AjaxController;
 import dessert.pvo.CartItemPVO;
 import dessert.rvo.ResultVO;
@@ -48,6 +47,7 @@ public class ReservateController extends AjaxController {
 			map.put(Configure.SUCCESS, rVo.getSuccess());
 			map.put(Configure.MESSAGE, rVo.getMessage());
 		}
+		session.removeAttribute(Configure.CART_LIST);
 		setJsonResult(map);
 		return Configure.SUCCESS;
 	}

@@ -14,7 +14,7 @@ import dessert.rvo.ResultVO;
 import dessert.service.MemberService;
 import dessert.util.FormValidator;
 
-@Controller("CashRecharge")
+@Controller("cashRecharge")
 public class CashRechargeController extends AjaxController{
 
 	/**

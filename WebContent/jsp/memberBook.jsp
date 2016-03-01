@@ -45,7 +45,7 @@
 			<a class="nav-btn" href="javascript:void(0)">更多店面</a>
 		</div>
 
-		<a class="manage-btn" href="javascript:void(0)"> <span>个人管理</span> <img
+		<a class="manage-btn" href="/Desserthouse/ShowMemberInfo"> <span>个人管理</span> <img
 			src="../img/signout.png">
 			<div class="clear"></div>
 		</a>

@@ -24,7 +24,7 @@ import dessert.rvo.member.CardInfoResultVO;
 import dessert.rvo.member.InfoResultVO;
 import dessert.rvo.member.LoginResultVO;
 import dessert.rvo.member.SignInResultVO;
-import dessert.rvo.member.ToCaseResultVO;
+import dessert.rvo.member.ToCashResultVO;
 import dessert.service.MemberService;
 import dessert.util.Util;
 
@@ -213,7 +213,7 @@ public class MemberServiceImpl implements MemberService {
 	public ResultVO Recharge(RechargePVO pvo) {
 		ResultVO rVo = new ResultVO();
 		Member member = memberDao.getByID(Integer.parseInt(pvo.getM_id()));
-		Cardinfo cardinfo = cardinfoDao.getById(Cardinfo.class, Long.parseLong(pvo.getM_id()));
+		Cardinfo cardinfo = cardinfoDao.getById(pvo.getM_id());
 		Date date = new Date(System.currentTimeMillis());
 		if (member == null) {
 			rVo.setSuccess(Configure.FAIL);
@@ -227,8 +227,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 		Memberrecord memberrecord = new Memberrecord();
 		if (pvo.getType() == Configure.BY_CARD) {// 银行卡
-			Bankcard bankcard = bankcardDao.getById(Bankcard.class, Long.parseLong(pvo.getCardnumber()));
-			if (bankcard == null) {
+			if (pvo.getCardnumber().equals(" ")) {
 				rVo.setSuccess(Configure.FAIL);
 				rVo.setMessage("该账号没有绑定银行卡，请绑定银行卡或者到店面现金充值");
 				return rVo;
@@ -263,7 +262,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int getMemberState(String id) {
-		Cardinfo cardinfo = cardinfoDao.getById(Cardinfo.class, Long.parseLong(id));
+		Cardinfo cardinfo = cardinfoDao.getById(Cardinfo.class, Integer.parseInt(id));
 		if (cardinfo == null) {
 			return Configure.FAIL;
 		}
@@ -368,9 +367,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public ToCaseResultVO ToCash(String id) {
+	public ToCashResultVO ToCash(String id) {
 		// TODO Auto-generated method stub
-		ToCaseResultVO rVo = new ToCaseResultVO();
+		ToCashResultVO rVo = new ToCashResultVO();
 		Cardinfo info = cardinfoDao.getById(id);
 		if (info == null) {
 			rVo.setSuccess(Configure.FAIL);
@@ -409,6 +408,8 @@ public class MemberServiceImpl implements MemberService {
 		}else {
 			rVo.setBackCard(bankcard.getCardnumber());
 		}
+		rVo.setSuccess(Configure.SUCCESS_INT);
+		rVo.setMessage("获取成功");
 		return rVo;
 	}
 

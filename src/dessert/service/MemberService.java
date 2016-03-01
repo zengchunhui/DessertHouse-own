@@ -7,7 +7,7 @@ import dessert.rvo.member.CardInfoResultVO;
 import dessert.rvo.member.InfoResultVO;
 import dessert.rvo.member.LoginResultVO;
 import dessert.rvo.member.SignInResultVO;
-import dessert.rvo.member.ToCaseResultVO;
+import dessert.rvo.member.ToCashResultVO;
 
 public interface MemberService {
 
@@ -51,7 +51,7 @@ public interface MemberService {
 	public int getMemberState(String id);
 	
 	//积分兑现
-	public ToCaseResultVO ToCash(String id);
+	public ToCashResultVO ToCash(String id);
 	
 	//得到账户信息
 	public CardInfoResultVO getCardInfo(String id);

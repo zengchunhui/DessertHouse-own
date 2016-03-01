@@ -10,4 +10,9 @@ import dessert.entity.Account;
 @Transactional
 public class AccountDaoImpl extends BaseDaoImpl<Account> implements AccountDao{
 
+	@Override
+	public Account getByID(int id) {
+		return getByColumn(Account.class, "s_id", id);
+	}
+
 }

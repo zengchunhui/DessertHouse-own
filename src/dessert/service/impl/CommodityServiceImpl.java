@@ -14,12 +14,14 @@ import dessert.configure.Configure;
 import dessert.dao.AccountDao;
 import dessert.dao.CardinfoDao;
 import dessert.dao.InventoryDao;
+import dessert.dao.MemberinfoDao;
 import dessert.dao.MemberrecordDao;
 import dessert.dao.ReservationDao;
 import dessert.dao.StoreDao;
 import dessert.entity.Account;
 import dessert.entity.Cardinfo;
 import dessert.entity.Inventory;
+import dessert.entity.Memberinfo;
 import dessert.entity.Memberrecord;
 import dessert.entity.Reservation;
 import dessert.entity.Store;
@@ -44,7 +46,8 @@ public class CommodityServiceImpl implements CommodityService{
 	AccountDao accountDao;
 	@Autowired
 	MemberrecordDao memberRecordDao;
-	
+	@Autowired
+	MemberinfoDao memberinfoDao;
 	@Override
 	public List<InventoryRVO> getByNameandDate(String name, Date date) {
 		// TODO Auto-generated method stub
@@ -75,6 +78,21 @@ public class CommodityServiceImpl implements CommodityService{
 		if (cardinfo==null) {
 			rVo.setSuccess(Configure.FAIL);
 			rVo.setMessage("您尚未注册，不能预定");
+			return rVo;
+		}
+		if (cardinfo.getState()==Configure.INACTIVE) {
+			rVo.setSuccess(Configure.FAIL);
+			rVo.setMessage("您的卡尚未激活，请及时充值以激活");
+			return rVo;
+		}
+		if (cardinfo.getState()==Configure.PAUSE) {
+			rVo.setSuccess(Configure.FAIL);
+			rVo.setMessage("您的卡已暂停使用，请及时充值以激活");
+			return rVo;
+		}
+		if (cardinfo.getState()==Configure.STOP) {
+			rVo.setSuccess(Configure.FAIL);
+			rVo.setMessage("您的卡已被停止，请到实体店咨询");
 			return rVo;
 		}
 		for (int i = 0; i < pvos.size(); i++) {
@@ -112,12 +130,17 @@ public class CommodityServiceImpl implements CommodityService{
 		cardinfo.addIntegral(Util.getintegral(amount, cardinfo.getGrade()));
 		cardinfoDao.update(cardinfo);/* ~ */
 		for ( Map.Entry<Integer,Double> entry: account.entrySet()) {
-			Account store_account=accountDao.getById(Account.class, entry.getKey());
+			Account store_account=accountDao.getByID(entry.getKey());
 			store_account.addAccount(entry.getValue());
 			accountDao.update(store_account);/* ~ */
 		}
 		rVo.setSuccess(Configure.SUCCESS_INT);
-		rVo.setMessage("预定成功");
+		Memberinfo memberinfo=memberinfoDao.getById(id);
+		if (memberinfo==null) {
+			rVo.setMessage("预定成功!为了能顺利派送，请在个人资料中填写送货地址");
+		}else{
+			rVo.setMessage("预定成功");	
+		}
 		return rVo;
 	}
 

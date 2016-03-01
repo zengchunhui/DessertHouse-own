@@ -63,7 +63,7 @@ public class PlanServiceImpl implements PlanService {
 	@Override
 	public ResultVO updatePlan(PlanPVO pvo, String id) {
 		ResultVO resultVO = new ResultVO();
-		Plan plan=planDao.getById(Plan.class, Long.parseLong(id));
+		Plan plan=planDao.getById(id);
 		if (plan==null) {
 			resultVO.setSuccess(Configure.FAIL);
 			resultVO.setMessage("找不到该计划");
@@ -90,7 +90,7 @@ public class PlanServiceImpl implements PlanService {
 	@Override
 	public ResultVO deletePlan(String id) {
 		ResultVO resultVO = new ResultVO();
-		Plan plan=planDao.getById(Plan.class, Long.parseLong(id));
+		Plan plan=planDao.getById(id);
 		if (plan==null) {
 			resultVO.setSuccess(Configure.FAIL);
 			resultVO.setMessage("找不到该计划");
@@ -111,7 +111,7 @@ public class PlanServiceImpl implements PlanService {
 	@Override
 	public ResultVO passPlan(String id) {
 		ResultVO resultVO = new ResultVO();
-		Plan plan=planDao.getById(Plan.class, Long.parseLong(id));
+		Plan plan=planDao.getById(id);
 		if (plan==null) {
 			resultVO.setSuccess(Configure.FAIL);
 			resultVO.setMessage("找不到该计划");
@@ -132,7 +132,7 @@ public class PlanServiceImpl implements PlanService {
 	public ResultVO passPlanList(ArrayList<String> ids) {		
 		ResultVO resultVO = new ResultVO();
 		for (int i = 0; i < ids.size(); i++) {
-			Plan plan=planDao.getById(Plan.class, Long.parseLong(ids.get(i)));
+			Plan plan=planDao.getById(ids.get(i));
 			if (plan==null) {
 				continue;//忽略错误计划id
 			}else {	

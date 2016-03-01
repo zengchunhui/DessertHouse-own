@@ -29,29 +29,27 @@ public class CardInfoController extends HtmlController {
 
 	@Override
 	public void validate(Map<String, String> params, FormValidator validator) {
-		HttpSession session = session();
-		String id = (String) session.getAttribute(Configure.ID);// 取得会员ID
-		validator.put(Configure.ID, id);
-		validator.isRequired(Configure.ID, ErrorCode.ID_IS_EMPTY);
+	
 	}
 
 	@Override
 	public String process(FormValidator validator) {
-		CardInfoResultVO rVo = memberService.getCardInfo(validator.getS(Configure.ID));
+		CardInfoResultVO rVo = memberService.getCardInfo((String)session().getAttribute(Configure.ID));
 		ServletContext sc = request().getServletContext();
 		sc.setAttribute(Configure.SUCCESS, rVo.getSuccess());
 		sc.setAttribute(Configure.MESSAGE, rVo.getMessage());
 		if (rVo.getSuccess() == Configure.SUCCESS_INT) {
 			sc.setAttribute(Configure.ID, rVo.getId());
+			sc.setAttribute(Configure.NAME, (String)session().getAttribute(Configure.NAME));
 			sc.setAttribute(Configure.BALANCE, rVo.getBalance());
-			sc.setAttribute(Configure.STATE, rVo.getState());
+			sc.setAttribute(Configure.STATE, rVo.getStateString());
 			sc.setAttribute(Configure.TOTAL, rVo.getTotal());
 			sc.setAttribute(Configure.GRADE, rVo.getGrade());
 			sc.setAttribute(Configure.INTEGRAL, rVo.getIntegral());
 			sc.setAttribute(Configure.BANKCARD, rVo.getBackCard());
-			return Configure.SUCCESS;
 		}
-		return Configure.ERROR;
+		return Configure.SUCCESS;
+		
 	}
 
 }

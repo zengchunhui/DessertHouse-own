@@ -50,7 +50,7 @@ public class StoreServiceImpl implements StoreService{
 	@Override
 	public ResultVO deleteStore(String id) {
 		ResultVO resultVO=new ResultVO();
-		Store store=storeDao.getById(Store.class, Long.parseLong(id));
+		Store store=storeDao.getById(id);
 		if (store==null) {
 			resultVO.setSuccess(Configure.FAIL);
 			resultVO.setMessage("找不到该店面");
@@ -66,7 +66,7 @@ public class StoreServiceImpl implements StoreService{
 	@Override
 	public ResultVO updateStore(StorePVO pvo,String id) {
 		ResultVO resultVO=new ResultVO();
-		Store store=storeDao.getById(Store.class, Long.parseLong(id));
+		Store store=storeDao.getById(id);
 		if (store==null) {
 			resultVO.setSuccess(Configure.FAIL);
 			resultVO.setMessage("找不到该店面");

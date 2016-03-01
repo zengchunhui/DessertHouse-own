@@ -13,7 +13,7 @@ import dessert.rvo.ResultVO;
 import dessert.service.MemberService;
 import dessert.util.FormValidator;
 
-@Controller("ChangeBankcard")
+@Controller("changeBankcard")
 public class BankcardChangeController extends AjaxController{
 
 	private static final long serialVersionUID = 1L;
@@ -26,16 +26,14 @@ public class BankcardChangeController extends AjaxController{
 
 	@Override
 	public void validate(Map<String, String> params, FormValidator validator) {
-		validator.put(Configure.ID, params.get(Configure.ID));
 		validator.put(Configure.BANKCARD, params.get(Configure.BANKCARD));
-		validator.isRequired(Configure.ID, ErrorCode.ID_IS_EMPTY);
 		validator.isRequired(Configure.BANKCARD, ErrorCode.BANKCARD_IS_EMPTY);
 		
 	}
 
 	@Override
 	public String process(FormValidator validator) {
-		ResultVO rVo=memberService.changeBankcard(validator.getS(Configure.ID), validator.getS(Configure.BANKCARD));
+		ResultVO rVo=memberService.changeBankcard((String)session().getAttribute(Configure.ID), validator.getS(Configure.BANKCARD));
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(Configure.SUCCESS, rVo.getSuccess());
 		map.put(Configure.MESSAGE, rVo.getMessage());

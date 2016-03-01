@@ -28,5 +28,13 @@
 			<result name="success" type="redirect">/jsp/memberBook.jsp</result>
 			<result name="error" type="redirect">/index.jsp</result>
 		</action>
+		<action name="ShowMemberInfo" class="showMemberInfo">
+			<result name="success" type="redirect">/jsp/memberInfo.jsp</result>
+			<result name="error" type="redirect">/index.jsp</result>
+		</action>
+		<action name="ShowCardInfo" class="showCardInfo">
+			<result name="success" type="redirect">/jsp/cardInfo.jsp</result>
+			<result name="error" type="redirect">/index.jsp</result>
+		</action>
 	</package>
 </struts>
