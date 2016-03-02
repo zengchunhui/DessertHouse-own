@@ -1,11 +1,14 @@
 package dessert.service;
 
+import java.util.List;
+
 import dessert.pvo.InfoPVO;
 import dessert.pvo.RechargePVO;
 import dessert.rvo.ResultVO;
 import dessert.rvo.member.CardInfoResultVO;
 import dessert.rvo.member.InfoResultVO;
 import dessert.rvo.member.LoginResultVO;
+import dessert.rvo.member.MemberRecordRVO;
 import dessert.rvo.member.SignInResultVO;
 import dessert.rvo.member.ToCashResultVO;
 
@@ -55,5 +58,8 @@ public interface MemberService {
 	
 	//得到账户信息
 	public CardInfoResultVO getCardInfo(String id);
+	
+	//得到会员记录
+	public List<MemberRecordRVO> getAllRecord(String id);
 
 }

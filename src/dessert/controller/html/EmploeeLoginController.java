@@ -53,10 +53,15 @@ public class EmploeeLoginController extends HtmlController {
 	@Override
 	public String process(FormValidator validator) {
 		// TODO Auto-generated method stub
+//		EmployeePVO pvo=new EmployeePVO("桃", "tao", Configure.DIRECTOR, 0);
+//		employeeService.addEmployee(pvo);
 		EmployeeLoginRVO rvo = employeeService.login(validator.getS(Configure.NAME),
 				validator.getS(Configure.PASSWORD));
 		HttpSession session = session();
 		ServletContext sc = request().getServletContext();
+		//TODO
+//		rvo.setSuccess(Configure.SUCCESS_INT);
+//		rvo.setType(Configure.HEAD_SERVER);
 		if (rvo.getSuccess() == Configure.SUCCESS_INT) {// 登录成功
 			sc.setAttribute(Configure.SUCCESS, Configure.SUCCESS_INT);
 			session.setAttribute(Configure.NAME, rvo.getName());
@@ -90,25 +95,8 @@ public class EmploeeLoginController extends HtmlController {
 	 */
 	private void adminPage(){
 		ServletContext sc = request().getServletContext();
-		List<StoreRVO> list=storeService.getAllStoreNotDelete();
-		int size=list.size();
-		
-		int [] s_id=new int[size];
-		String[] s_name=new String[size];
-		String[] address=new String[size];
-		String[] telphone=new String[size];
-		
-		for (int i = 0; i < size; i++) {
-			StoreRVO rvo=list.get(i);
-			s_id[i]=rvo.getId();
-			s_name[i]=rvo.getName();
-			address[i]=rvo.getAddress();
-			telphone[i]=rvo.getTelphone();
-		}
-		sc.setAttribute(Configure.S_ID, s_id);
-		sc.setAttribute(Configure.S_NAME, s_name);
-		sc.setAttribute(Configure.ADDRESS, address);
-		sc.setAttribute(Configure.PHONE, telphone);
+		List<StoreRVO> list=storeService.getAllStoreNotDelete();	
+		sc.setAttribute(Configure.STORE_LIST, list);
 	}
 	
 	/**
@@ -117,6 +105,8 @@ public class EmploeeLoginController extends HtmlController {
 	private void headPage(){
 		ServletContext sc = request().getServletContext();
 		List<PlanInfoResultVO> list=planService.getInpassPlan(1);
+		Map<Integer, String> store=storeService.getStores();
+		sc.setAttribute(Configure.STORE_LIST, store);
 		sc.setAttribute(Configure.IMPASS_PLAN, list);
 	}
 	private void directorPage(){
@@ -124,6 +114,8 @@ public class EmploeeLoginController extends HtmlController {
 		List<PlanInfoResultVO> impass=planService.getInpassPlan(1);
 		List<PlanInfoResultVO> pass=planService.getPassPlan(1);
 		List<PlanInfoResultVO> all=planService.getAllPlan(1);
+		Map<Integer, String> store=storeService.getStores();
+		sc.setAttribute(Configure.STORE_LIST, store);
 		sc.setAttribute(Configure.IMPASS_PLAN, impass);
 		sc.setAttribute(Configure.PASS_PLAN, pass);
 		sc.setAttribute(Configure.ALL_PLAN, all);

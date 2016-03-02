@@ -50,5 +50,20 @@
     					<param name="root">jsonResult</param>
     				</result>
     			</action>
+    			<action name="UpdatePlan" class="updatePlan" method="execute">
+    				<result type="json">
+    					<param name="root">jsonResult</param>
+    				</result>
+    			</action>
+    			<action name="DeletePlan" class="deletePlan" method="execute">
+    				<result type="json">
+    					<param name="root">jsonResult</param>
+    				</result>
+    			</action>
+    			<action name="AddPlan" class="addPlan" method="execute">
+    				<result type="json">
+    					<param name="root">jsonResult</param>
+    				</result>
+    			</action>
     		</package>		
     </struts>

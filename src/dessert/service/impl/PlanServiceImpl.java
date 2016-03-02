@@ -59,6 +59,29 @@ public class PlanServiceImpl implements PlanService {
 		resultVO.setMessage("计划列表添加成功");
 		return resultVO;
 	}
+	@Override
+	public PlanInfoResultVO addPlan(PlanPVO pvo) {
+		PlanInfoResultVO resultVO;
+//		ResultVO resultVO = new ResultVO();
+		Store store = storeDao.getById(pvo.getS_id()+"");
+		if (store == null) {
+			resultVO=new PlanInfoResultVO();
+			resultVO.setSuccess(Configure.FAIL);
+			resultVO.setMessage("该店面不存在，请重新输入");
+			return resultVO;
+		}
+		Plan plan = new Plan();
+		plan.setP_name(pvo.getP_name());
+		plan.setP_num(pvo.getP_num());
+		plan.setPlandate(pvo.getPlandate());
+		plan.setPrice(pvo.getPrice());
+		plan.setS_id(pvo.getS_id());
+		planDao.add(plan);
+		resultVO=new PlanInfoResultVO(planDao.getByPVO(pvo));
+		resultVO.setSuccess(Configure.SUCCESS_INT);
+		resultVO.setMessage("计划添加成功");
+		return resultVO;
+	}
 
 	@Override
 	public ResultVO updatePlan(PlanPVO pvo, String id) {
@@ -75,11 +98,11 @@ public class PlanServiceImpl implements PlanService {
 			resultVO.setMessage("该计划已通过审批，不可修改");
 			return resultVO;
 		}
-			plan.setP_name(pvo.getP_name());
+//			plan.setP_name(pvo.getP_name());
 			plan.setP_num(pvo.getP_num());
-			plan.setPlandate(pvo.getPlandate());
+//			plan.setPlandate(pvo.getPlandate());
 			plan.setPrice(pvo.getPrice());
-			plan.setS_id(pvo.getS_id());
+//			plan.setS_id(pvo.getS_id());
 			planDao.update(plan);
 			resultVO.setSuccess(Configure.SUCCESS_INT);
 			resultVO.setMessage("修改成功");
@@ -192,5 +215,7 @@ public class PlanServiceImpl implements PlanService {
 		}
 		return resultVOs;
 	}
+
+	
 
 }

@@ -1,6 +1,8 @@
 package dessert.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ import dessert.rvo.ResultVO;
 import dessert.rvo.member.CardInfoResultVO;
 import dessert.rvo.member.InfoResultVO;
 import dessert.rvo.member.LoginResultVO;
+import dessert.rvo.member.MemberRecordRVO;
 import dessert.rvo.member.SignInResultVO;
 import dessert.rvo.member.ToCashResultVO;
 import dessert.service.MemberService;
@@ -380,11 +383,19 @@ public class MemberServiceImpl implements MemberService {
 		}
 		int integral = info.getIntegral();
 		double balance = info.getBalance();
-		balance += Util.toCash(integral);
+		double amount=Util.toCash(integral);
+		balance += amount;
 		integral = 0;
 		info.setBalance(balance);
 		info.setIntegral(integral);
+		Memberrecord memberrecord = new Memberrecord();
+		memberrecord.setAmount(amount);
+		memberrecord.setExplanation("积分兑现");
+		memberrecord.setM_id(Integer.parseInt(id));
+		memberrecord.setR_date(Util.getCurrentDate());
+		memberrecord.setType(Configure.CASH);
 		cardinfoDao.update(info);
+		memberrecordDao.add(memberrecord);
 		rVo.setSuccess(Configure.SUCCESS_INT);
 		rVo.setMessage("兑现成功！");
 		rVo.setBalance(balance);
@@ -433,5 +444,17 @@ public class MemberServiceImpl implements MemberService {
 			cardinfoDao.update(info);
 		}
 		return info;
+	}
+
+	@Override
+	public List<MemberRecordRVO> getAllRecord(String id) {
+		List<Memberrecord> list=memberrecordDao.getListByColumn(Memberrecord.class, "m_id", Integer.parseInt(id));
+		List<MemberRecordRVO> resultList=new ArrayList<>();
+		for (int i = 0; i < list.size(); i++) {
+			MemberRecordRVO rvo=new MemberRecordRVO();
+			rvo.serFromRecord(list.get(i));
+			resultList.add(rvo);
+		}
+		return resultList;
 	}
 }

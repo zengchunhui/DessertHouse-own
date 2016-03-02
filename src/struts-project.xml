@@ -18,9 +18,9 @@
 			<result name="error" type="redirect">/index.jsp?type=1</result>
 		</action>
 		<action name="EmploeeLogin" class="emploeeLogin">
-			<result name="adminstrator" type="redirect">/404.jsp</result>
+			<result name="adminstrator" type="redirect">/jsp/storeManage.jsp</result>
 			<result name="director" type="redirect">/404.jsp</result>
-			<result name="head_server" type="redirect">/404.jsp</result>
+			<result name="head_server" type="redirect">/jsp/headServer.jsp</result>
 			<result name="server" type="redirect">/404.jsp</result>
 			<result name="error" type="redirect">/jsp/employeeLogin.jsp</result>
 		</action>
@@ -35,6 +35,15 @@
 		<action name="ShowCardInfo" class="showCardInfo">
 			<result name="success" type="redirect">/jsp/cardInfo.jsp</result>
 			<result name="error" type="redirect">/index.jsp</result>
+		</action>
+		<action name="ShowInventory" class="showInventory">
+			<result name="success" type="redirect">/jsp/memberBook.jsp</result>
+		</action>
+		<action name="MemberRecord" class="memberRecord">
+			<result name="success" type="redirect">/jsp/memberRecord.jsp</result>
+		</action>
+		<action name="ManageEmployee" class="manageEmployee">
+			<result name="success" type="redirect">/jsp/employeeManage.jsp</result>
 		</action>
 	</package>
 </struts>

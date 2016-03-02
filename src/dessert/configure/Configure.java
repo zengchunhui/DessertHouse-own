@@ -32,7 +32,7 @@ public class Configure {
 	public static final String  E_SERVER			=	"server";
 	public static final String  ADDRESS				=	"address";
 	public static final String  PHONE				=	"phone";
-	public static final String  IMPASS_PLAN			=	"impass";
+	public static final String  IMPASS_PLAN			=	"impass_plan";
 	public static final String  PASS_PLAN			=	"pass_plan";
 	public static final String  ALL_PLAN			=	"all_plan";
 	public static final String  IS_SIGNUP			=	"is_signup";
@@ -53,6 +53,12 @@ public class Configure {
 	public static final String  PRICE				=	"price";
 	public static final String  CART_LIST			=	"cart_list";
 	public static final String  LEFT_NUM			=	"left_num";
+	public static final String  ALL_RECORD			=	"all_record";
+	public static final String  POSI_RECORD			=	"posi_record";
+	public static final String  NEG_RECORD			=	"neg_record";
+	public static final String  STORE_LIST			=	"store_list";
+	public static final String  P_DATE				=	"p_date";
+	public static final String  P_ID				=	"p_id";
 	//
 	
 	public static final int  	FAIL				=	0;

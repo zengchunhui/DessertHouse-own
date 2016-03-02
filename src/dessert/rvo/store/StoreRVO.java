@@ -1,8 +1,9 @@
 package dessert.rvo.store;
 
 import dessert.entity.Store;
+import dessert.rvo.ResultVO;
 
-public class StoreRVO {
+public class StoreRVO extends ResultVO{
 	private int id;
 	private String name;
 	private String address;

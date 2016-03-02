@@ -311,3 +311,10 @@ input[type="text"].num-input {
 .message {
 	font-size: 25px;
 }
+
+.book-table input{          /*可输入区域样式*/ 
+    width:50px;
+    padding:1px 3px 1px 3px; 
+    margin:0px; 
+    border:none;                /* 输入框不要边框 */ 
+} 

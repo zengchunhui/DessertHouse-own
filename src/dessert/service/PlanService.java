@@ -11,6 +11,7 @@ public interface PlanService {
 
 	// 新增计划
 	public ResultVO addPlans(ArrayList<PlanPVO> pvo);
+	public PlanInfoResultVO addPlan(PlanPVO pvo);
 
 	// 修改计划
 	// 已通过计划不可修改

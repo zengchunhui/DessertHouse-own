@@ -3,6 +3,7 @@ package dessert.rvo.employee;
 import dessert.entity.Employee;
 
 public class EmploeeInfoResultVO {
+//	priva
 	private String name;
 	private int type;
 	private int s_id;

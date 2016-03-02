@@ -23,7 +23,7 @@ public class StoreDaoImpl extends BaseDaoImpl<Store> implements StoreDao{
 
 	@Override
 	public Store getById(String id) {
-		return getByColumn(Store.class, "id", id);
+		return getByColumn(Store.class, "id", Integer.parseInt(id));
 	}
 
 }

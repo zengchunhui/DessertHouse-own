@@ -3,8 +3,10 @@ package dessert.rvo.plan;
 import java.util.Date;
 
 import dessert.entity.Plan;
+import dessert.rvo.ResultVO;
+import dessert.util.Util;
 
-public class PlanInfoResultVO {
+public class PlanInfoResultVO extends ResultVO{
 
 	private int id;
 	private Date plandate;
@@ -14,6 +16,10 @@ public class PlanInfoResultVO {
 	private double price;
 	private int state;
 
+	public PlanInfoResultVO(){
+		
+	}
+	
 	public PlanInfoResultVO(Plan plan){
 		id=plan.getId();
 		plandate=plan.getPlandate();
@@ -74,6 +80,10 @@ public class PlanInfoResultVO {
 
 	public void setState(int state) {
 		this.state = state;
+	}
+	
+	public String getDate(){
+		return Util.getDateString(plandate);
 	}
 
 }

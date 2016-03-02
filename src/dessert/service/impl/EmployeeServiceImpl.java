@@ -95,7 +95,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public ArrayList<EmploeeInfoResultVO> getEmploeesByType(int type) {
 
-		List<Employee> employees=employeeDao.getListByColumn(Employee.class, "type", type);
+		List<Employee> employees=employeeDao.getListByColumn(Employee.class, "type", type,1,20,"s_id",true);
+
 		ArrayList<EmploeeInfoResultVO> vos=new ArrayList<>();
 		if (employees!=null) {
 			for (int i = 0; i < employees.size(); i++) {

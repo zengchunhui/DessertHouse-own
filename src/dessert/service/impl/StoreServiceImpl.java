@@ -1,7 +1,9 @@
 package dessert.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +27,8 @@ public class StoreServiceImpl implements StoreService{
 	AccountDao accountDao;
 	
 	@Override
-	public ResultVO addStore(StorePVO pvo) {
-		ResultVO resultVO=new ResultVO();
+	public StoreRVO addStore(StorePVO pvo) {
+		StoreRVO resultVO=new StoreRVO();
 		Store store=storeDao.getByAddr(pvo.getAddress());
 		if (store!=null&&store.getDelete_flag()==Configure.DELETE_FLAG_FALSE) {//存在且未被删除
 			resultVO.setSuccess(Configure.FAIL);
@@ -41,6 +43,8 @@ public class StoreServiceImpl implements StoreService{
 			Account account=new Account();
 			account.setS_id(store.getId());
 			accountDao.add(account);
+			store=storeDao.getByName(pvo.getName());
+			resultVO.setId(store.getId());
 			resultVO.setSuccess(Configure.SUCCESS_INT);
 			resultVO.setMessage("添加成功");
 		}
@@ -105,6 +109,26 @@ public class StoreServiceImpl implements StoreService{
 			result.add(rvo);
 		}
 		return result;
+	}
+
+	@Override
+	public Map<Integer, String> getStores() {
+		List<Store> list=storeDao.getListByColumn(Store.class, "delete_flag", Configure.DELETE_FLAG_FALSE);//未删除
+		Map<Integer, String> result=new HashMap<>();
+ 		if (list==null) {
+			return result;
+		}
+ 		for(int i=0;i<list.size();i++){
+ 			result.put(list.get(i).getId(), list.get(i).getName());
+ 		}
+		return result;
+	}
+
+	@Override
+	public StoreRVO getStore(String id) {
+		StoreRVO rvo=new StoreRVO();
+		rvo.setFromStore(storeDao.getById(id));
+		return rvo;
 	}
 
 }
