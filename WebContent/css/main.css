@@ -38,6 +38,10 @@ b:after {
     -webkit-transform: rotate(-90deg);
 }
 
+option {
+	background-color :none;
+}
+
 .btn {
 	box-sizing:border-box;
 	padding: 10px 30px 10px 30px;
@@ -232,7 +236,16 @@ input[type="radio"] {
 	border-left: 0px;
 	border-right: 0px;
 }
+.book-table .short-input-td {
+	width:120px;
+}
 
+.book-table .long-input-td {
+	width:200px;
+}
+.book-table input {
+	border:none;
+}
 .sale-table {
 	width: 650x;
 	margin: 40px;
@@ -335,7 +348,7 @@ input[type="text"].num-input {
 .toolkit {
     position: absolute;
 	right: 30px;
-	top: 50px;
+	top: 20px;
 	font-size: 25px;
 	color: #343434;
 }
@@ -348,3 +361,58 @@ input[type="text"].num-input {
 .toolkit:hover {
 	
 }
+
+.info-form select{
+	width:120px;
+	
+}
+
+.tool-bar select{
+	width: 120px;
+	height: 61px;
+	margin-top: 20px;
+	margin-right: 20px;
+	float: right;
+}
+
+#bankcard {
+	width:300px;
+}
+
+#edit-s-id,#add-s-id {
+	width:150px;
+}
+
+#edit-type,#add-type {
+	width:200px;
+}
+
+li .long-input-td {
+	width:300px;
+}
+
+li .short-input-td {
+	width:200px;
+}
+
+.plan-form li {
+	text-align:center;
+}
+
+.plan-form input, .plan-form select{
+	display:inline-block;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.plan-form .btn{
+	float:none;
+	margin-top:10px;
+}
+
+.sale-little-table {
+	display:inline-block;
+	vertical-align: top;
+	
+}
+

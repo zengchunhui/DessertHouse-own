@@ -6,11 +6,14 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import dessert.dao.StatisticsDao;
 import dessert.entity.Statistics;
 import dessert.util.Util;
-
+@Repository
+@Transactional
 public class StatisticsDaoImpl extends BaseDaoImpl<Statistics> implements StatisticsDao {
 
 	@Override

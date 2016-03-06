@@ -26,7 +26,7 @@
 			<a class="nav-btn" href="/Desserthouse/ManageEmployee">店员管理</a>
 		</div>
 
-		<a class="manage-btn" href="javascript:void(0)"> <span>登出</span> <img
+		<a class="manage-btn" href="/Desserthouse/Logout"> <span>登出</span> <img
 			src="../img/signout.png">
 			<div class="clear"></div>
 		</a>

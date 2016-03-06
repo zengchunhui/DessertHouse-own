@@ -5,16 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import dessert.configure.Configure;
-import dessert.configure.ErrorCode;
 import dessert.controller.HtmlController;
 import dessert.rvo.commodity.InventoryRVO;
-import dessert.rvo.member.LoginResultVO;
 import dessert.service.CommodityService;
 import dessert.service.MemberService;
 import dessert.service.StoreService;
@@ -51,8 +48,8 @@ public class ShowInventoryController extends HtmlController{
 		
 			sc.setAttribute(Configure.SUCCESS, Configure.SUCCESS_INT);
 			//TODO
-//			Date date=Util.getCurrentDate();
-			Date date=Util.getDateFromString("2016-02-28");
+			Date date=Util.getCurrentDate();
+//			Date date=Util.getDateFromString("2016-02-28");
 			String[] storeName=storeService.getAllStoreName();
 			List<InventoryRVO> firstList=commodityService.getByNameandDate(storeName[0], date);
 			List<InventoryRVO> secondList=commodityService.getByNameandDate(storeName[0], Util.theDateAfterday(date, 1));

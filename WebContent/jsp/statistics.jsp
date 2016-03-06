@@ -41,6 +41,7 @@
 		<div class="content">
 			<div class="wrapper">
 				<div class="tool-bar">
+					<a class="btn tool-btn" id="tool-btn-check" href="javascript:void(0)">查询</a>
 					<select id="month">
 					        <%if(month==2){ %>
 							    <option value="2" selected="selected">二月</option>
@@ -51,12 +52,11 @@
 						    <%} %>
 					    
 					</select>
-					<a class="btn tool-btn" id="tool-btn-check" href="javascript:void(0)">查询</a>
 					<div class="clear"></div>
 				</div>
 				<div style="height: 1px"></div>
 	
-				<table class="sale-table" border="1">
+				<table class="sale-table sale-little-table" border="1">
 					<tr>
 						<th>性别</th>
 						<th>数量</th>
@@ -73,7 +73,7 @@
 					<%}%>
 				</table>
 				
-				<table class="sale-table" border="1">
+				<table class="sale-table sale-little-table" border="1">
 					<tr>
 						<th>年龄段</th>
 						<th>数量</th>
@@ -90,7 +90,7 @@
 					<%}%>
 				</table>
 				
-				<table class="sale-table" border="1">
+				<table class="sale-table sale-little-table" border="1">
 					<tr>
 						<th>地区</th>
 						<th>数量</th>
@@ -107,11 +107,10 @@
 					<%}%>
 				</table>
 				
-				<table class="sale-table" border="1">
+				<table class="sale-table sale-little-table" border="1">
 					<tr>
-						<th>地区</th>
-						<th>数量</th>
-						<th>比例</th>
+						<th>消费类型</th>
+						<th>消费金额</th>
 					</tr>
 					<%
 						for (int i = 0; i < rvo.getPurcharseNum().length; i++) {
@@ -119,14 +118,13 @@
 					<tr>
 						<td><%=rvo.getPurcharseString()[i]%></td>
 						<td><%=rvo.getPurcharseNum()[i]%></td>
-						<td><%=fmt.format((double)rvo.getPurcharseNum()[i]/(double)rvo.getTotal())%></td>
 					</tr>
 					<%}%>
 				</table>
 				
-				<table class="sale-table" border="1">
+				<table class="sale-table sale-little-table" border="1">
 					<tr>
-						<th>地区</th>
+						<th>卡状态</th>
 						<th>数量</th>
 						<th>比例</th>
 					</tr>

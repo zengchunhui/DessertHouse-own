@@ -51,7 +51,7 @@
 	</div>
 	<img src="../img/login-dessert.png" alt="dessert" id="img-dessert">
 
-	<script src="../js/bootstrap.js"></script>
 	<script src="../js/jquery-2.1.4.min.js"></script>
+	<script src="../js/bootstrap.js"></script>
 </body>
 </html>

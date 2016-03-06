@@ -63,12 +63,12 @@ $(".confirm-btn").on("click",function(){
                 data:{'store_name':name,'address':addr,'phone':tel},
                 success:function(result,textStatus){
                     	alert(result.message);
-                    	alert(result.s_id);
+                    	//alert(result.s_id);
                     	$("#store-table").append("<tr>"+
                     		"<td>"+result.s_id+"</td>"+
-                    		"<td><input type=\"text\" id=\""+result.s_id+"-name\" value=\""+name+"\"></td>"+
-                    		"<td><input type=\"text\" id=\""+result.s_id+"-addr\" value=\""+addr+"\"></td>"+
-                    		"<td><input type=\"text\" id=\""+result.s_id+"-tel\" value=\""+tel+"\"></td>"+
+                    		"<td><input type=\"text\" class=\"short-input-td\" id=\""+result.s_id+"-name\" value=\""+name+"\"></td>"+
+                    		"<td><input type=\"text\" class=\"long-input-td\" id=\""+result.s_id+"-addr\" value=\""+addr+"\"></td>"+
+                    		"<td><input type=\"text\" class=\"long-input-td\" id=\""+result.s_id+"-tel\" value=\""+tel+"\"></td>"+
                     		"<td><a class=\"plan-btn-edit\" id=\""+result.s_id+"-edit\"><img src=\"../img/edit.png\"></a></td>"+
                     		"<td><a class=\"plan-btn-delete\" id=\""+result.s_id+"-delete\"><img src=\"../img/delete.png\"></a></td>"+
                     		"</tr>");

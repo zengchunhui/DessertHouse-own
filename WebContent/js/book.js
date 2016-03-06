@@ -19,9 +19,10 @@ $(".nav-btn").on("click",function(e){
 		date="2016-"+$(this).html();
 		//console.log($(this).html());
 	}); 
-	// alert(store_name);
-	// alert(date);
-    $("#store-name").val(store_name);
+//	 alert(store_name);
+//	 alert(date);
+//	 return;
+     $("#store-name").val(store_name);
 	 $("#date").val(date);
 	 $("#store-inventory").submit();
 });
@@ -223,13 +224,13 @@ $(".confirm-btn").on("click",function(){
 $('.date-input').datepicker({
 	format: "yyyy-mm-dd",
 	startDate: "2016-03-07",
-	endDate: "2016-03-13"
+	endDate: "2016-03-11"
 });
 
-$(".nav-btn").on("change",function(){
+$(document).on("change",".date-input",function(){
     var store_name=$(".nav-btn-active").html();
     var date=$(this).val();
-    
+    alert(store_name);
      $("#store-name").val(store_name);
 	 $("#date").val(date);
 	 $("#store-inventory").submit();

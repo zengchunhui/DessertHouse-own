@@ -11,7 +11,7 @@ $(".modify-btn").click(function(){
 	$.ajax({
         type:"POST",
         url:"/Desserthouse/api/CashRecharge",
-        data:{'compellation':compellation,'gender':gender,'birthday':birthday,'address':address,'phone':phone,'area':area},
+        data:{'id':id,'amount':amount},
         success:function(result,textStatus){
            alert(result.message);
         }

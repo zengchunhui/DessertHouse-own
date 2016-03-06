@@ -69,18 +69,18 @@
 						%><li><span>卡号:</span><span> <%=id %></span></li>
 						<li><span>用户名:</span><span> <%=name %></span></li>
 						<li><span>等级:</span><span> <%=grade %></span></li>
-						<li><span>积分:</span><span id="span-integral"> <%=integral %></span><input class="btn modify-btn" id="modify-integral" value="兑现"></li>
+						<li><span>积分:</span><span id="span-integral"> <%=integral %></span><input class="btn confirm-btn" id="modify-integral" value="兑现"></li>
 						<li><span>状态:</span><span> <%=state %></span></li>
 						<li><span>余额:</span><span id="span-balance"> <%=balance %></span></li>
 						<li><span>累计:</span><span> <%=total %></span></li>
 						<%if(bankcard.equals(" ")){ 
 						%><li><span>银行卡:</span><input type="text" id="bankcard" placeholder="请输入银行卡号"></li>
-						<li><input class="btn modify-btn" id="modify-bankcard" value="绑定银行卡"></li>
+						<li><input class="btn confirm-btn" id="modify-bankcard" value="绑定银行卡"></li>
 						<%
 						}else{ %><li><span>银行卡:</span><input type="text" id="bankcard" value="<%=bankcard %>"></li>
-						<li><input class="btn modify-btn" id="modify-bankcard" value="修改银行卡"></li>
+						<li><input class="btn confirm-btn" id="modify-bankcard" value="修改银行卡"></li>
 			             <%}%>
-						<li><input class="btn modify-btn" id="modify-recharge" value="充值"></li>
+						<li><input class="btn confirm-btn" id="modify-recharge" value="充值"></li>
 					<%} %>
 					</ul>
 				</form>

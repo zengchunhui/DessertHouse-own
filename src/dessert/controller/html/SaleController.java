@@ -39,9 +39,9 @@ public class SaleController extends HtmlController{
 
 	@Override
 	public String process(FormValidator validator) {
-//		Date date=Util.getCurrentDate();
+		Date date=Util.getCurrentDate();
 		session().removeAttribute(Configure.RECEIPT_LIST);
-		Date date=Util.getDateFromString("2016-02-28");
+//		Date date=Util.getDateFromString("2016-02-28");
 		List<InventoryRVO> list=commodityService.getByIDandDate((int)session().getAttribute(Configure.S_ID), date);
 		ServletContext sc = request().getServletContext();
 		sc.setAttribute(Configure.INVENTORY_LIST, list);

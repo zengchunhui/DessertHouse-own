@@ -4,7 +4,7 @@ $(document).on("click","#modify-memberid",function(){
 		$(".message").html("<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>输入错误，请重新输入</div>");
 		return;
 	}
-	alert(id);
+//	alert(id);
 	$("#input-id").val(id);
 	$("#user-id").submit();
 });

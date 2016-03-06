@@ -68,7 +68,7 @@
 						<%} %>
 						<li><span>生日:</span><input type="date" id="birthday" placeholder="<%=birthday%>"></li>
 						<li><span>送货地址:</span>
-						<select id="address-select">
+						<select class="select-info" id="address-select">
 							<option value="0">玄武区</option>
 							<option value="1">鼓楼区</option>
 							<option value="2">建邺区</option>
@@ -96,7 +96,7 @@
 	<script src="../js/bootstrap.js"></script>
     <script src="../js/memberinfo.js"></script>
     <script type="text/javascript">
-      $("#address-select")[<%=area%>].attr("selected","selected");
+      $("#address-select").val(<%=area%>);
     </script>
 </body>
 </html>

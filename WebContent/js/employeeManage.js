@@ -39,7 +39,7 @@ $(document).on("click","#confirm-edit",function(){
             });
 });
 
-$(document).on("click",".store-btn-delete",function(){
+$(document).on("click",".employee-btn-delete",function(){
    var button_id=$(this).attr("id");
    var name=button_id.split("-")[0];//取得id
 	$.ajax({

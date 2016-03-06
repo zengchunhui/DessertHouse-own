@@ -20,7 +20,7 @@
 			<a class="nav-btn" href="/Desserthouse/jsp/memberAllInfo.jsp">会员资料</a>
 			<a class="nav-btn nav-btn-active" href="javascript:void(0)">充值</a>
 		</div>
-		<a class="manage-btn" href="/Desserthouse/ShowInventory"> <span>登出</span> <img
+		<a class="manage-btn" href="/Desserthouse/Logout"> <span>登出</span> <img
 			src="../img/signout.png">
 			<div class="clear"></div>
 		</a>

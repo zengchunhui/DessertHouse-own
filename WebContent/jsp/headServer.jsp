@@ -26,7 +26,7 @@
 			<a class="nav-btn nav-btn-active" href="javascript:void(0)">计划管理</a>
 		</div>
 
-		<a class="manage-btn" href="javascript:void(0)"> <span>登出</span> <img
+		<a class="manage-btn" href="/Desserthouse/Logout"> <span>登出</span> <img
 			src="../img/signout.png">
 			<div class="clear"></div>
 		</a>
@@ -41,17 +41,7 @@
 					<a class="btn tool-btn" id="tool-btn-plan" href="javascript:void(0)">新增计划</a>
 					<div class="clear"></div>
 				</div>
-				<%
-					if (impassList.size() <= 0) {
-				%>
-				<form class="info-form">
-					<ul>
-						<li><span>当前没有未通过审批的计划项</span></li>
-					</ul>
-				</form>
-				<%
-					} else {
-				%>
+				
 				<table class="book-table" id="plan-table" border="1">
 					<tr>
 						<th>日期</th>
@@ -69,8 +59,8 @@
 						<td><%=impassList.get(i).getDate()%></td>
 						<td><%=store.get(impassList.get(i).getS_id())%></td>
 						<td><%=impassList.get(i).getP_name()%></td>
-						<td><input type="text" id="<%=impassList.get(i).getId() + "-num"%>" value="<%=impassList.get(i).getP_num() %>"></td>
-						<td><input type="text" id="<%=impassList.get(i).getId() + "-price"%>" value="<%=impassList.get(i).getPrice() %>"></td>
+						<td><input type="text" class="short-input-td" id="<%=impassList.get(i).getId() + "-num"%>" value="<%=impassList.get(i).getP_num() %>"></td>
+						<td><input type="text" class="short-input-td" id="<%=impassList.get(i).getId() + "-price"%>" value="<%=impassList.get(i).getPrice() %>"></td>
 					    <td><a class="plan-btn-edit" id="<%=impassList.get(i).getId() + "-edit"%>"><img
 								src="../img/edit.png"></a></td>
 						<td><a class="plan-btn-delete" id="<%=impassList.get(i).getId()  + "-delete"%>"><img
@@ -78,7 +68,6 @@
 					</tr>
 					<%
 						    }
-						}
 					%>
 				</table>
 				<div class="message"></div>
@@ -92,18 +81,28 @@
 			<a class="close-btn" href="javascript:void(0)"><b></b></a>
 			<form class="plan-form">
 			    <ul>
-						<li><input type="date" id="p_date" placeholder="2016/03/01"></li>
-						<li><select id="s_id">
+						<li><input type="date" class="short-input-td" id="p_date" placeholder="2016/03/01"></li>
+						<li><select class="short-input-td" id="s_id">
 						<%for(Map.Entry<Integer,String> entry:store.entrySet()){ %>
 							<option value="<%=entry.getKey()%>"><%=entry.getValue() %></option>
 						<%} %>
 						</select></li>
-						<li><input type="text" id="p_name" placeholder="商品名"></li>
-						<li><input type="text" id="p_num" placeholder="商品数量"></li>
-						<li><input type="text" id="price" placeholder="单价"></li>
+						<li><select class="short-input-td" id="p_name">
+							<option value="南瓜派">南瓜派</option>
+							<option value="草莓派">草莓派</option>
+							<option value="起司蛋糕">起司蛋糕</option>
+							<option value="姜饼小人">姜饼小人</option>
+							<option value="菠萝包">菠萝包</option>
+							<option value="奶酪蛋糕">奶酪蛋糕</option>
+							<option value="提拉米苏">提拉米苏</option>
+							<option value="切片面包">切片面包</option>
+							<option value="蛋挞">蛋挞</option>
+						</select></li>
+						<li><input type="text" class="short-input-td" id="p_num" placeholder="商品数量"></li>
+						<li><input type="text" class="short-input-td" id="price" placeholder="单价"></li>
+						<li><a class="btn confirm-btn" href="javascript:void(0)">添加</a></li>
 			    </ul>
 			</form>
-			<a class="btn confirm-btn" href="javascript:void(0)">添加</a>
 			<div class="form-message"></div>
 			<div class="clear"></div>
 		</div>

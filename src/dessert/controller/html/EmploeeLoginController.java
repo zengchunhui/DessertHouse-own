@@ -122,8 +122,8 @@ public class EmploeeLoginController extends HtmlController {
 		sc.setAttribute(Configure.ALL_PLAN, all);
 	}
 	private void serverPage(){
-//		Date date=Util.getCurrentDate();
-		Date date=Util.getDateFromString("2016-02-28");
+		Date date=Util.getCurrentDate();
+//		Date date=Util.getDateFromString("2016-02-28");
 		List<InventoryRVO> list=commodityService.getByIDandDate((int)session().getAttribute(Configure.S_ID), date);
 		ServletContext sc = request().getServletContext();
 		sc.setAttribute(Configure.INVENTORY_LIST, list);

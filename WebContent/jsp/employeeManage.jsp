@@ -27,7 +27,7 @@ Map<Integer, String> sotreList = (Map<Integer, String>) sc.getAttribute("store_l
 			<a class="nav-btn nav-btn-active" href="javascript:void(0)">店员管理</a>
 		</div>
 
-		<a class="manage-btn" href="javascript:void(0)"> <span>登出</span> <img
+		<a class="manage-btn" href="/Desserthouse/Logout"> <span>登出</span> <img
 			src="../img/signout.png">
 			<div class="clear"></div>
 		</a>
@@ -132,7 +132,7 @@ Map<Integer, String> sotreList = (Map<Integer, String>) sc.getAttribute("store_l
 			<a class="close-btn" href="javascript:void(0)"><b></b></a>
 			<form class="info-form">
 			    <ul>
-						<li><input type="text" id="add-name" placeholder="用户名"></li>
+						<li><input type="text" class="long-input-td" id="add-name" placeholder="用户名"></li>
 						<li><select id="add-s-id">
 						<option value="0">无</option>
 						<%for(Map.Entry<Integer,String> entry:sotreList.entrySet()){ %>
@@ -144,8 +144,8 @@ Map<Integer, String> sotreList = (Map<Integer, String>) sc.getAttribute("store_l
 						     <option value="2">总店服务员</option>
 						     <option value="3">分店服务员</option>
 						</select>
-						<li><input type="password" id="add-password" placeholder="请输入密码"></li>
-						<li><input type="password" id="add-password-twice" placeholder="请再次输入密码"></li>
+						<li><input type="password" class="long-input-td" id="add-password" placeholder="请输入密码"></li>
+						<li><input type="password" class="long-input-td" id="add-password-twice" placeholder="请再次输入密码"></li>
 			    </ul>
 			</form>
 			<a class="btn confirm-btn" id="confirm-add" href="javascript:void(0)">添加</a>

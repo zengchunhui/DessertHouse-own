@@ -41,6 +41,7 @@
 		<div class="content">
 			<div class="wrapper">
 				<div class="tool-bar">
+					<a class="btn tool-btn" id="tool-btn-check" href="javascript:void(0)">查询</a>
 					<select id="s_id">
 						<%for(Map.Entry<Integer,String> entry:store.entrySet()){ %>
 						    <%if(entry.getKey()==s_id){ %>
@@ -60,7 +61,6 @@
 						    <%} %>
 					    
 					</select>
-					<a class="btn tool-btn" id="tool-btn-check" href="javascript:void(0)">查询</a>
 					<div class="clear"></div>
 				</div>
 				<div style="height: 1px"></div>

@@ -26,7 +26,7 @@
 			<a class="nav-btn" href="/Desserthouse/jsp/memberAllInfo.jsp">会员资料</a>
 			<a class="nav-btn" href="/Desserthouse/jsp/recharge.jsp">充值</a>
 		</div>
-		<a class="manage-btn" href="/Desserthouse/ShowInventory"> <span>登出</span> <img
+		<a class="manage-btn" href="/Desserthouse/Logout"> <span>登出</span> <img
 			src="../img/signout.png">
 			<div class="clear"></div>
 		</a>
@@ -64,9 +64,9 @@
   							<%} %>
 						</select>
 						</li>
-						<li><span>数量:</span><input type="text" id="pnum-card" placeholder="商品数"></li>
-							<li><span>会员卡:</span><input type="text" id="mid" placeholder="卡号"></li>
-							<li><span>密码:</span><input type="password" id="mpass" placeholder="密码"></li>
+						<li><span>数量:</span><input type="text" class="long-input-td" id="pnum-card" placeholder="商品数"></li>
+							<li><span>会员卡:</span><input type="text" class="long-input-td" id="mid" placeholder="卡号"></li>
+							<li><span>密码:</span><input type="password" class="long-input-td" id="mpass" placeholder="密码"></li>
 							<li><span>余额:</span><span id="balance-card"></span></li>
 							<li><span>总价:</span><span id="total-card"></span></li>
 							<li><span>积分:</span><span id="integral-card"></span></li>

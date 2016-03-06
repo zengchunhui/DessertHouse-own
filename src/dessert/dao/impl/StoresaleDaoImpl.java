@@ -35,7 +35,7 @@ public class StoresaleDaoImpl extends BaseDaoImpl<Storesale> implements Storesal
 		Date starDate=Util.getDateFromString(start);
 		Date endDate=Util.getDateFromString(end);
 		Session session = sessionFactory.getCurrentSession();
-		Criteria criteria = session.createCriteria(Statistics.class);
+		Criteria criteria = session.createCriteria(Storesale.class);
 		criteria.setProjection(list);
 		criteria.add(Restrictions.between("s_date", starDate, endDate));
 		criteria.add(Restrictions.eq("s_id", s_id));
@@ -44,9 +44,9 @@ public class StoresaleDaoImpl extends BaseDaoImpl<Storesale> implements Storesal
     		SaleRecordRVO rvo=new SaleRecordRVO();
     		rvo.setS_id(s_id);
     		rvo.setP_name((String)temp[0]);
-    		rvo.setType((int)temp[2]);
-    		rvo.setP_num((int)temp[3]);
-    		rvo.setAmount((double)temp[4]);
+    		rvo.setType((int)temp[1]);
+    		rvo.setP_num(((Long)temp[2]).intValue());
+    		rvo.setAmount((double)temp[3]);
     		rvos.add(rvo);
     	}
 		return rvos;		
