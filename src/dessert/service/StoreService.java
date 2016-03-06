@@ -5,6 +5,7 @@ import java.util.Map;
 
 import dessert.pvo.StorePVO;
 import dessert.rvo.ResultVO;
+import dessert.rvo.commodity.SaleRecordRVO;
 import dessert.rvo.store.StoreRVO;
 
 public interface StoreService {
@@ -22,4 +23,6 @@ public interface StoreService {
 	public List<StoreRVO> getAllStoreNotDelete();
 	
 	public StoreRVO getStore(String id);
+	
+	 public List<SaleRecordRVO> getSaleRecord(int month,int s_id);
 }

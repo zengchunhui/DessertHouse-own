@@ -7,7 +7,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.xmlbeans.impl.jam.mutable.MPackage;
 import org.springframework.stereotype.Controller;
 
 import dessert.configure.Configure;
@@ -25,19 +24,16 @@ public class GetCartController extends AjaxController{
 
 	@Override
 	public String execute() throws Exception {
-		
 		return controller(response(), request());
 	}
 
 	@Override
 	public void validate(Map<String, String> params, FormValidator validator) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public String process(FormValidator validator) {
-		// TODO Auto-generated method stub
 		HttpSession session = session();
 		List<CartItemPVO> list = (List<CartItemPVO>) session.getAttribute(Configure.CART_LIST);
 		if (list == null) {

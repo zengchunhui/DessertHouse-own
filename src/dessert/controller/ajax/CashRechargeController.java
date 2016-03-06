@@ -32,9 +32,9 @@ public class CashRechargeController extends AjaxController{
 	@Override
 	public void validate(Map<String, String> params, FormValidator validator) {
 		validator.put(Configure.AMOUNT, params.get(Configure.AMOUNT));
-//		validator.put(Configure.BANKCARD, params.get(Configure.BANKCARD));
+		validator.put(Configure.ID, params.get(Configure.ID));
 		validator.isRequired(Configure.AMOUNT, ErrorCode.AMOUNT_IS_EMPTY);
-//		validator.isRequired(Configure.BANKCARD, ErrorCode.BANKCARD_IS_EMPTY);
+		validator.isRequired(Configure.ID, ErrorCode.ID_IS_EMPTY);
 //		validator.is
 		
 	}
@@ -43,7 +43,7 @@ public class CashRechargeController extends AjaxController{
 	public String process(FormValidator validator) {
 		// TODO Auto-generated method stub
 		RechargePVO pvo=new RechargePVO();
-		pvo.setM_id((String)session().getAttribute(Configure.ID));
+		pvo.setM_id(validator.getS(Configure.ID));
 		pvo.setAmount(Double.parseDouble(validator.getS(Configure.AMOUNT)));
 //		pvo.setCardnumber(validator.getS(Configure.BANKCARD));
 		pvo.setType(Configure.BY_CASH);

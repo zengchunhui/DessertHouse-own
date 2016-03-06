@@ -1,7 +1,15 @@
 /**
  * 预定界面
  */
-
+$(document).ready(function(){
+	if(m_state==0){
+		alert("您尚未激活，请尽快激活您的会员卡");
+	}else if(m_state==2){
+		alert("您的会员卡已被暂停，一次充值200以上可以激活");
+	}else if(m_state==3){
+		alert("您的会员卡已被停止使用，详情请到店里咨询");
+	}
+});
 $(".nav-btn").on("click",function(e){
      var visited_id=$(e.target).attr("id");//取得id
      var store_name=visited_id.split("-")[1];
@@ -9,7 +17,7 @@ $(".nav-btn").on("click",function(e){
 
 	$(".tab-btn-active").each(function(){//取得日期
 		date="2016-"+$(this).html();
-		console.log($(this).html());
+		//console.log($(this).html());
 	}); 
 	// alert(store_name);
 	// alert(date);
@@ -70,6 +78,7 @@ $("#tab-thirdday").on("click",function(){
 
 $(".book-btn-td").on("click",function(){//添加预约对象
 	$(this).children("img").attr("src","../img/check.png");
+	$(this).attr("disable","true");
 	var storeName=visited;
 //	alert(storeName);
 	var send_date="2016-"+$(".tab-btn-active").html();
@@ -204,9 +213,24 @@ $(".confirm-btn").on("click",function(){
                 data:{ },
                 success:function(result,textStatus){
                     	alert(result.message);
-//                    $("#message").html("<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>"+result.root.message+"</div>");
+//                    $(".message").html("<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>"+result.root.message+"</div>");
 	    				 $(".modal-wrapper").hide();
   						 $("body").css("overflow","auto");
                 }
             });
+});
+
+$('.date-input').datepicker({
+	format: "yyyy-mm-dd",
+	startDate: "2016-03-07",
+	endDate: "2016-03-13"
+});
+
+$(".nav-btn").on("change",function(){
+    var store_name=$(".nav-btn-active").html();
+    var date=$(this).val();
+    
+     $("#store-name").val(store_name);
+	 $("#date").val(date);
+	 $("#store-inventory").submit();
 });

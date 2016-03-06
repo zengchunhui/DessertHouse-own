@@ -26,7 +26,7 @@
 	</div>
 
 	<img src="./img/logo.png" alt="logo" id="img-logo">
-	<div>
+	<div class="toolkit">
 		<a href="./jsp/employeeLogin.jsp" id="worker-login">工作人员<img
 			src="./img/goto.png" alt="进入" id="img-goto"></a>
 	</div>

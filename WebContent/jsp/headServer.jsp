@@ -59,7 +59,8 @@
 						<th>商品名</th>
 						<th>数量</th>
 						<th>价格</th>
-						<th>操作</th>
+						<th>编辑</th>
+						<th>删除</th>
 					</tr>
 					<%
 						for (int i = 0; i < impassList.size(); i++) {
@@ -71,8 +72,8 @@
 						<td><input type="text" id="<%=impassList.get(i).getId() + "-num"%>" value="<%=impassList.get(i).getP_num() %>"></td>
 						<td><input type="text" id="<%=impassList.get(i).getId() + "-price"%>" value="<%=impassList.get(i).getPrice() %>"></td>
 					    <td><a class="plan-btn-edit" id="<%=impassList.get(i).getId() + "-edit"%>"><img
-								src="../img/edit.png"></a>
-							 <a class="plan-btn-delete" id="<%=impassList.get(i).getId()  + "-delete"%>"><img
+								src="../img/edit.png"></a></td>
+						<td><a class="plan-btn-delete" id="<%=impassList.get(i).getId()  + "-delete"%>"><img
 								src="../img/delete.png"></a></td>
 					</tr>
 					<%
@@ -92,7 +93,11 @@
 			<form class="plan-form">
 			    <ul>
 						<li><input type="date" id="p_date" placeholder="2016/03/01"></li>
-						<li><input type="text" id="s_id" placeholder="商店编号（暂定）"></li>
+						<li><select id="s_id">
+						<%for(Map.Entry<Integer,String> entry:store.entrySet()){ %>
+							<option value="<%=entry.getKey()%>"><%=entry.getValue() %></option>
+						<%} %>
+						</select></li>
 						<li><input type="text" id="p_name" placeholder="商品名"></li>
 						<li><input type="text" id="p_num" placeholder="商品数量"></li>
 						<li><input type="text" id="price" placeholder="单价"></li>

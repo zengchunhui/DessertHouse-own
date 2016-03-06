@@ -13,28 +13,19 @@ $(".close-btn").on("click",function(){
 
 $(document).on("click",".store-btn-edit",function(){
    var button_id=$(this).attr("id");
-   var id=button_id.split("-")[0];//取得计划id
-   if (isNaN(id)) {
-		$(".dialog-message").html("<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>ddd</div>");
+   var id=button_id.split("-")[0];//取得id
+   var name=$("#"+id+"-name").val();
+   var addr=$("#"+id+"-addr").val();
+   var tel=$("#"+id+"-tel").val();
+
+   if (tel==""||name==""||addr=="") {
+		$(".message").html("<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>输入不能为空</div>");
 		return;
 	}
-   var num=$("#"+id+"-num").val();
-   var price=$("#"+id+"-price").val();
-   if (num==""||isNaN(num)) {
-		$(".dialog-message").html("<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>请重新输入数量</div>");
-		return;
-	}
-	if (price=="") {
-		$(".dialog-message").html("<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>价格不能为空</div>");
-		return;
-	}
-//	alert(id);
-//	alert(num);
-//	alert(price);
 	$.ajax({
                 type:"POST",
                 url:"/Desserthouse/api/UpdateStore",
-                data:{'p_id':id,'p_num':num,'price':price},
+                data:{'s_id':id,'store_name':name,'address':addr,'phone':tel},
                 success:function(result,textStatus){
                     	alert(result.message);
                 }
@@ -43,30 +34,46 @@ $(document).on("click",".store-btn-edit",function(){
 
 $(document).on("click",".store-btn-delete",function(){
    var button_id=$(this).attr("id");
-   var id=button_id.split("-")[0];//取得计划id
+   var id=button_id.split("-")[0];//取得id
+   alert(id);
 	$.ajax({
                 type:"POST",
                 url:"/Desserthouse/api/DeleteStore",
-                data:{'p_id':id},
+                data:{'s_id':id},
                 success:function(result,textStatus){
                     	alert(result.message);
+                    	if (result.success==1) {
+                    		$("#"+button_id+"").parent().parent().remove();
+                    	}
                 }
             });
 });
 
 $(".confirm-btn").on("click",function(){
-	var temp_date=$("#p_date").val().split("/");
-	var s_id=$("#s_id").val();
-	var p_name=$("#p_name").val();
-	var p_num=$("#p_num").val();
-	var price=$("#price").val();
-	var p_date=temp_date[0]+"-"+temp_date[1]+"-"+temp_date[2];
+	var name=$("#name").val();
+    var addr=$("#addr").val();
+    var tel=$("#tel").val();
+    if (tel==""||name==""||addr=="") {
+		$(".form-message").html("<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>输入不能为空</div>");
+		return;
+	}
 	$.ajax({
                 type:"POST",
                 url:"/Desserthouse/api/AddStore",
-                data:{'p_date':p_date,'s_id':s_id,'p_name':p_name,'p_num':p_num,'price':price},
+                data:{'store_name':name,'address':addr,'phone':tel},
                 success:function(result,textStatus){
                     	alert(result.message);
+                    	alert(result.s_id);
+                    	$("#store-table").append("<tr>"+
+                    		"<td>"+result.s_id+"</td>"+
+                    		"<td><input type=\"text\" id=\""+result.s_id+"-name\" value=\""+name+"\"></td>"+
+                    		"<td><input type=\"text\" id=\""+result.s_id+"-addr\" value=\""+addr+"\"></td>"+
+                    		"<td><input type=\"text\" id=\""+result.s_id+"-tel\" value=\""+tel+"\"></td>"+
+                    		"<td><a class=\"plan-btn-edit\" id=\""+result.s_id+"-edit\"><img src=\"../img/edit.png\"></a></td>"+
+                    		"<td><a class=\"plan-btn-delete\" id=\""+result.s_id+"-delete\"><img src=\"../img/delete.png\"></a></td>"+
+                    		"</tr>");
+                    	$("#employee-add").show();
+                    	$("body").css("overflow","hide");
                 }
             });
 });/**

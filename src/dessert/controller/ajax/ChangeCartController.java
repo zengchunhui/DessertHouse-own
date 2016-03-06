@@ -63,7 +63,11 @@ public class ChangeCartController extends AjaxController{
 		}else {
 			for (int i = 0; i < list.size(); i++) {
 				if (list.get(i).isEqual(pvo)) {
-					list.set(i, pvo);
+					if (pvo.getP_num()==0) {
+						list.remove(i);
+					}else {
+						list.set(i, pvo);	
+					}
 					break;
 				}
 			}

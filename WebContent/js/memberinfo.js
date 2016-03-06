@@ -29,13 +29,25 @@ $(".modify-btn").click(function(){
 	}
 	var temp=birthday.split("/")
 	birthday=temp[0]+"-"+temp[1]+"-"+temp[2];
-	alert(compellation+" "+gender);
+	var area=$("#address-select").val();
+	//alert(compellation+" "+gender);
 	$.ajax({
                 type:"POST",
                 url:"/Desserthouse/api/ChangeInfo",
-                data:{'compellation':compellation,'gender':gender,'birthday':birthday,'address':address,'phone':phone},
+                data:{'compellation':compellation,'gender':gender,'birthday':birthday,'address':address,'phone':phone,'area':area},
                 success:function(result,textStatus){
                    alert(result.message);
                 }
             });
+});
+
+$("#tool-btn-cancel").click(function(){
+	$.ajax({
+        type:"POST",
+        url:"/Desserthouse/api/CancelMember",
+        data:{ },
+        success:function(result,textStatus){
+           alert(result.message);
+        }
+    });
 });

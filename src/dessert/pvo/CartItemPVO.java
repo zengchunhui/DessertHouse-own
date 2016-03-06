@@ -1,14 +1,12 @@
 package dessert.pvo;
 
-import java.util.Date;
-
 public class CartItemPVO {
 	private String store_name;
 	private String p_name;
 	private int p_num;
+	private double price;
 	private int left_num;
 	private String s_date;
-	private double price;
 
 	public String getStore_name() {
 		return store_name;

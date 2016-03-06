@@ -11,10 +11,12 @@ import org.springframework.stereotype.Service;
 import dessert.configure.Configure;
 import dessert.dao.AccountDao;
 import dessert.dao.StoreDao;
+import dessert.dao.StoresaleDao;
 import dessert.entity.Account;
 import dessert.entity.Store;
 import dessert.pvo.StorePVO;
 import dessert.rvo.ResultVO;
+import dessert.rvo.commodity.SaleRecordRVO;
 import dessert.rvo.store.StoreRVO;
 import dessert.service.StoreService;
 
@@ -25,6 +27,8 @@ public class StoreServiceImpl implements StoreService{
 	StoreDao storeDao;
 	@Autowired
 	AccountDao accountDao;
+	@Autowired
+	StoresaleDao storeSaleDao;
 	
 	@Override
 	public StoreRVO addStore(StorePVO pvo) {
@@ -55,7 +59,7 @@ public class StoreServiceImpl implements StoreService{
 	public ResultVO deleteStore(String id) {
 		ResultVO resultVO=new ResultVO();
 		Store store=storeDao.getById(id);
-		if (store==null) {
+		if (store==null||store.getDelete_flag()==Configure.DELETE_FLAG_TRUE) {
 			resultVO.setSuccess(Configure.FAIL);
 			resultVO.setMessage("找不到该店面");
 		}else {
@@ -129,6 +133,12 @@ public class StoreServiceImpl implements StoreService{
 		StoreRVO rvo=new StoreRVO();
 		rvo.setFromStore(storeDao.getById(id));
 		return rvo;
+	}
+
+	@Override
+	public List<SaleRecordRVO> getSaleRecord(int month, int s_id) {
+		
+		return storeSaleDao.getByMonthAndStore(month, s_id);
 	}
 
 }

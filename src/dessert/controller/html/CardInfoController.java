@@ -3,13 +3,11 @@ package dessert.controller.html;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import dessert.configure.Configure;
-import dessert.configure.ErrorCode;
 import dessert.controller.HtmlController;
 import dessert.rvo.member.CardInfoResultVO;
 import dessert.service.MemberService;
@@ -34,6 +32,7 @@ public class CardInfoController extends HtmlController {
 
 	@Override
 	public String process(FormValidator validator) {
+	
 		CardInfoResultVO rVo = memberService.getCardInfo((String)session().getAttribute(Configure.ID));
 		ServletContext sc = request().getServletContext();
 		sc.setAttribute(Configure.SUCCESS, rVo.getSuccess());

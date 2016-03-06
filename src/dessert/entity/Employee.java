@@ -5,6 +5,8 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import dessert.configure.Configure;
+
 @Entity(name = "emploee")
 public class Employee {
 	@Id
@@ -45,5 +47,18 @@ public class Employee {
 	public void setS_id(int s_id) {
 		this.s_id = s_id;
 	}
-
+	public String getTypeString(){
+		switch (type) {
+		case Configure.HEAD_SERVER:
+			return "总店服务员";
+		case Configure.SERVER:
+			return "分店服务员";
+		case Configure.ADMINISTRATOR:
+			return "系统管理员";
+		case Configure.DIRECTOR:
+			return "经理";
+		default:
+			return "";
+		}
+	}
 }

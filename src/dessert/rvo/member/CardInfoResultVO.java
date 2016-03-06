@@ -8,9 +8,9 @@ import dessert.util.Util;
 public class CardInfoResultVO extends ResultVO {
 	private String id;
 	private String balance;// 余额
+	private int grade;// 等级
 	private int state;// 状态
 	private String total;// 累计充值
-	private int grade;// 等级
 	private int integral;// 积分
 	private String backCard;// 银行卡
 	

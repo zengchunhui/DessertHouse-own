@@ -10,6 +10,7 @@ import dessert.rvo.member.InfoResultVO;
 import dessert.rvo.member.LoginResultVO;
 import dessert.rvo.member.MemberRecordRVO;
 import dessert.rvo.member.SignInResultVO;
+import dessert.rvo.member.StatisticsRVO;
 import dessert.rvo.member.ToCashResultVO;
 
 public interface MemberService {
@@ -61,5 +62,8 @@ public interface MemberService {
 	
 	//得到会员记录
 	public List<MemberRecordRVO> getAllRecord(String id);
+	
+	//得到会员统计数据
+	public StatisticsRVO getStatistics(int month);
 
 }

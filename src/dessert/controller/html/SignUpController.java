@@ -58,7 +58,8 @@ public class SignUpController extends HtmlController{
 			session.setAttribute(Configure.NAME, rvo.getName());
 			session.setAttribute(Configure.STATE, Configure.INACTIVE);
 			//获得商家信息
-			Date date=new Date();
+//			Date date=new Date();
+			Date date=Util.getDateFromString("2016-02-28");
 			String[] storeName=storeService.getAllStoreName();
 			List<InventoryRVO> firstList=commodityService.getByNameandDate(storeName[0], date);
 			List<InventoryRVO> secondList=commodityService.getByNameandDate(storeName[0], Util.theDateAfterday(date, 1));

@@ -1,5 +1,6 @@
 package dessert.controller.html;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -12,13 +13,16 @@ import org.springframework.stereotype.Controller;
 import dessert.configure.Configure;
 import dessert.configure.ErrorCode;
 import dessert.controller.HtmlController;
+import dessert.rvo.commodity.InventoryRVO;
 import dessert.rvo.employee.EmployeeLoginRVO;
 import dessert.rvo.plan.PlanInfoResultVO;
 import dessert.rvo.store.StoreRVO;
+import dessert.service.CommodityService;
 import dessert.service.EmployeeService;
 import dessert.service.PlanService;
 import dessert.service.StoreService;
 import dessert.util.FormValidator;
+import dessert.util.Util;
 
 @Controller("emploeeLogin")
 public class EmploeeLoginController extends HtmlController {
@@ -30,6 +34,8 @@ public class EmploeeLoginController extends HtmlController {
 	@Autowired
 //	CommodityService commodityService;
 	StoreService storeService;
+	@Autowired
+	CommodityService commodityService;
 	
 	/**
 	 * 
@@ -52,16 +58,10 @@ public class EmploeeLoginController extends HtmlController {
 
 	@Override
 	public String process(FormValidator validator) {
-		// TODO Auto-generated method stub
-//		EmployeePVO pvo=new EmployeePVO("桃", "tao", Configure.DIRECTOR, 0);
-//		employeeService.addEmployee(pvo);
 		EmployeeLoginRVO rvo = employeeService.login(validator.getS(Configure.NAME),
 				validator.getS(Configure.PASSWORD));
 		HttpSession session = session();
 		ServletContext sc = request().getServletContext();
-		//TODO
-//		rvo.setSuccess(Configure.SUCCESS_INT);
-//		rvo.setType(Configure.HEAD_SERVER);
 		if (rvo.getSuccess() == Configure.SUCCESS_INT) {// 登录成功
 			sc.setAttribute(Configure.SUCCESS, Configure.SUCCESS_INT);
 			session.setAttribute(Configure.NAME, rvo.getName());
@@ -78,6 +78,7 @@ public class EmploeeLoginController extends HtmlController {
 				headPage();
 				return Configure.E_HEAD_SERVER;
 			case Configure.SERVER:
+				serverPage();
 				return Configure.E_SERVER;
 			default:
 				sc.setAttribute(Configure.SUCCESS, Configure.FAIL);
@@ -119,5 +120,12 @@ public class EmploeeLoginController extends HtmlController {
 		sc.setAttribute(Configure.IMPASS_PLAN, impass);
 		sc.setAttribute(Configure.PASS_PLAN, pass);
 		sc.setAttribute(Configure.ALL_PLAN, all);
+	}
+	private void serverPage(){
+//		Date date=Util.getCurrentDate();
+		Date date=Util.getDateFromString("2016-02-28");
+		List<InventoryRVO> list=commodityService.getByIDandDate((int)session().getAttribute(Configure.S_ID), date);
+		ServletContext sc = request().getServletContext();
+		sc.setAttribute(Configure.INVENTORY_LIST, list);
 	}
 }

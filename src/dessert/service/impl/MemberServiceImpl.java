@@ -14,11 +14,13 @@ import dessert.dao.CardinfoDao;
 import dessert.dao.MemberDao;
 import dessert.dao.MemberinfoDao;
 import dessert.dao.MemberrecordDao;
+import dessert.dao.StatisticsDao;
 import dessert.entity.Bankcard;
 import dessert.entity.Cardinfo;
 import dessert.entity.Member;
 import dessert.entity.Memberinfo;
 import dessert.entity.Memberrecord;
+import dessert.entity.Statistics;
 import dessert.pvo.InfoPVO;
 import dessert.pvo.RechargePVO;
 import dessert.rvo.ResultVO;
@@ -27,6 +29,7 @@ import dessert.rvo.member.InfoResultVO;
 import dessert.rvo.member.LoginResultVO;
 import dessert.rvo.member.MemberRecordRVO;
 import dessert.rvo.member.SignInResultVO;
+import dessert.rvo.member.StatisticsRVO;
 import dessert.rvo.member.ToCashResultVO;
 import dessert.service.MemberService;
 import dessert.util.Util;
@@ -43,6 +46,8 @@ public class MemberServiceImpl implements MemberService {
 	MemberinfoDao memberinfoDao;
 	@Autowired
 	MemberrecordDao memberrecordDao;
+	@Autowired
+	StatisticsDao statisticsDao;
 
 	/**
 	 * 注册
@@ -99,9 +104,20 @@ public class MemberServiceImpl implements MemberService {
 			if (new_password.equals(member.getPassword())) {
 				Cardinfo cardinfo = cardinfoDao.getById(member.getId() + "");// 取得卡信息
 				cardinfo=checkCardinfo(cardinfo);//检查状态
+				rVo.setBalance(Util.DoubleToString(cardinfo.getBalance()));
+				rVo.setGrade(cardinfo.getGrade());
 				rVo.setState(cardinfo.getState());
 				rVo.setSuccess(Configure.SUCCESS_INT);
-				rVo.setMessage("登录成功");
+				if (cardinfo.getState()==Configure.INACTIVE) {
+					rVo.setMessage("您的卡尚未激活，请及时充值以激活");
+				}else if (cardinfo.getState()==Configure.PAUSE) {
+					rVo.setMessage("您的卡已暂停使用，请及时充值以激活");
+				}else if (cardinfo.getState()==Configure.STOP) {
+					rVo.setMessage("您的卡已被停止，请到实体店咨询");
+				}else {
+					rVo.setMessage("登录成功");
+					
+				}
 				rVo.setName(member.getName());
 				rVo.setMidFormInt(member.getId());
 			} else {
@@ -362,7 +378,14 @@ public class MemberServiceImpl implements MemberService {
 			rVo.setMessage("找不到该会员账号");
 		} else {
 			cardinfo.setState(Configure.STOP);
+			Memberrecord memberrecord = new Memberrecord();
+			memberrecord.setAmount(0);
+			memberrecord.setExplanation("停止会员记录");
+			memberrecord.setM_id(Integer.parseInt(id));
+			memberrecord.setR_date(Util.getCurrentDate());
+			memberrecord.setType(Configure.CANCEL);
 			cardinfoDao.update(cardinfo);
+			memberrecordDao.add(memberrecord);
 			rVo.setSuccess(Configure.SUCCESS_INT);
 			rVo.setMessage("该账号已成功停止");
 		}
@@ -371,7 +394,6 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public ToCashResultVO ToCash(String id) {
-		// TODO Auto-generated method stub
 		ToCashResultVO rVo = new ToCashResultVO();
 		Cardinfo info = cardinfoDao.getById(id);
 		if (info == null) {
@@ -456,5 +478,72 @@ public class MemberServiceImpl implements MemberService {
 			resultList.add(rvo);
 		}
 		return resultList;
+	}
+
+	@Override
+	public StatisticsRVO getStatistics(int month) {
+		// TODO Auto-generated method stub
+		String[] tempString;
+		int[] tempInt;
+		double[] tempDouble;
+		StatisticsRVO rvo=new StatisticsRVO();
+		String[] area= new String[]{"玄武区","鼓楼区","建邺区","秦淮区","雨花台区","浦口区","栖霞区","江宁区","六合区","溧水区","高淳区"};
+		String[] age=new String[]{"0-20","20-40","40-60","60-80","80-100"};
+		String[] gender=new String[]{"女","男"};
+		String[] purchase=new String[]{" ","购买","预定"};
+		String[] cardState=new String[]{"未激活","正常","暂停","停止"};
+		Statistics statistics=statisticsDao.getByMonth(month);
+		//地区
+		String[] areaTemp=statistics.getArea().split(";");
+		tempString=new String[areaTemp.length];
+		tempInt=new int[areaTemp.length];
+		for (int i = 0; i < areaTemp.length; i++) {
+			tempString[i]=area[Integer.parseInt(areaTemp[i].split(":")[0])];
+			tempInt[i]=Integer.parseInt(areaTemp[i].split(":")[1]);
+		}
+		rvo.setAreaString(tempString);
+		rvo.setAreaNum(tempInt);
+		//年龄
+		String[] ageTemp=statistics.getAge().split(";");
+		tempString=new String[ageTemp.length];
+		tempInt=new int[ageTemp.length];
+		for (int i = 0; i < ageTemp.length; i++) {
+			tempString[i]=age[Integer.parseInt(ageTemp[i].split(":")[0])];
+			tempInt[i]=Integer.parseInt(ageTemp[i].split(":")[1]);
+		}
+		rvo.setAgeString(tempString);
+		rvo.setAgeNum(tempInt);
+		//性别
+		String[] gemderTemp=statistics.getGender().split(";");
+		tempString=new String[gemderTemp.length];
+		tempInt=new int[gemderTemp.length];
+		for (int i = 0; i < gemderTemp.length; i++) {
+			tempString[i]=gender[Integer.parseInt(gemderTemp[i].split(":")[0])];
+			tempInt[i]=Integer.parseInt(gemderTemp[i].split(":")[1]);
+		}
+		rvo.setGenderString(tempString);
+		rvo.setGenderNum(tempInt);
+		//消费
+		String[] purTemp=statistics.getPurcharse().split(";");
+		tempString=new String[purTemp.length];
+		tempDouble=new double[purTemp.length];
+		for (int i = 0; i < purTemp.length; i++) {
+			tempString[i]=purchase[Integer.parseInt(purTemp[i].split(":")[0])];
+			tempDouble[i]=Double.parseDouble(purTemp[i].split(":")[1]);
+		}
+		rvo.setPurcharseString(tempString);
+		rvo.setPurcharseNum(tempDouble);
+		//卡状态
+		String[] cardTemp=statistics.getCardstate().split(";");
+		tempString=new String[cardTemp.length];
+		tempInt=new int[cardTemp.length];
+		for (int i = 0; i < cardTemp.length; i++) {
+			tempString[i]=cardState[Integer.parseInt(cardTemp[i].split(":")[0])];
+			tempInt[i]=Integer.parseInt(cardTemp[i].split(":")[1]);
+		}
+		rvo.setStateString(tempString);
+		rvo.setStateNum(tempInt);
+		rvo.setTotal(statistics.getNum());
+		return rvo;
 	}
 }

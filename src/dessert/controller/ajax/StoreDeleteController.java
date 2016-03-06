@@ -13,7 +13,7 @@ import dessert.rvo.ResultVO;
 import dessert.service.StoreService;
 import dessert.util.FormValidator;
 
-@Controller("deleteAtore")
+@Controller("deleteStore")
 public class StoreDeleteController extends AjaxController{
 	/**
 	 * 
@@ -30,7 +30,7 @@ public class StoreDeleteController extends AjaxController{
 	@Override
 	public void validate(Map<String, String> params, FormValidator validator) {
 		validator.put(Configure.S_ID, params.get(Configure.S_ID));
-		validator.isRequired(Configure.S_ID, ErrorCode.ID_NOT_INT);
+		validator.isRequired(Configure.S_ID, ErrorCode.ID_IS_EMPTY);
 //		validator.isInt(Configure.S_ID, ErrorCode.ID_NOT_INT);
 		
 	}

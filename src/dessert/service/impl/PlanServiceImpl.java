@@ -138,6 +138,9 @@ public class PlanServiceImpl implements PlanService {
 		if (plan==null) {
 			resultVO.setSuccess(Configure.FAIL);
 			resultVO.setMessage("找不到该计划");
+		}else if (plan.getState()==Configure.PASS) {
+			resultVO.setSuccess(Configure.SUCCESS_INT);
+			resultVO.setMessage("修改成功");
 		}else {	
 			plan.setState(Configure.PASS);
 			planDao.update(plan);

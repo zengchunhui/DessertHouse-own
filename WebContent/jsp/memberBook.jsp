@@ -8,17 +8,21 @@
 <meta charset="UTF-8">
 <title>Book</title>
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-datepicker3.css">
 <link rel="stylesheet" type="text/css" href="../css/main.css">
 <%
 	ServletContext sc = request.getServletContext();
 	String visited_store = (String) sc.getAttribute("visited");
 	String[] storeName = (String[]) sc.getAttribute("store_name");
+	int state=(int)session.getAttribute("state");
 	List<InventoryRVO> firstList = (List<InventoryRVO>) sc.getAttribute("date_first");
 	List<InventoryRVO> secondList = (List<InventoryRVO>) sc.getAttribute("date_second");
 	List<InventoryRVO> thirdList = (List<InventoryRVO>) sc.getAttribute("date_third");
 %>
 <script>
-	var visited ="<%=visited_store%>";
+	var visited = "<%=visited_store%>";
+	var m_state=<%=state%>;
 </script>
 
 </head>
@@ -50,6 +54,10 @@
 			<div class="clear"></div>
 		</a>
 	</div>
+	<div class="toolkit">
+		<a href="/Desserthouse/Logout">登出<img
+			src="../img/goto.png" alt="进入" id="img-goto"></a>
+	</div>
 	<div class="right-site">
 		<div class="tab-btn-group">
 			<a class="tab-btn tab-btn-active" href="javascript:void(0)"
@@ -74,6 +82,7 @@
 			<div class="wrapper">
 				<div class="tool-bar">
 					<a class="btn tool-btn" id="tool-btn-cart" href="javascript:void(0)">购物车</a>
+					<input type="text" class="date-input" placeholder="预定日期">
 					<div class="clear"></div>
 				</div>
 				<%
@@ -219,6 +228,8 @@
 		</div>
 	</div>
 	<script src="../js/jquery-2.1.4.min.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script src="../js/bootstrap-datepicker.js"></script>
 	<script src="../js/book.js"></script>
 </body>
 </html>

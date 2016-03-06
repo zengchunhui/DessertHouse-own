@@ -1,9 +1,9 @@
 package dessert.rvo.employee;
 
+import dessert.configure.Configure;
 import dessert.entity.Employee;
 
 public class EmploeeInfoResultVO {
-//	priva
 	private String name;
 	private int type;
 	private int s_id;
@@ -32,5 +32,18 @@ public class EmploeeInfoResultVO {
 	public void setS_id(int s_id) {
 		this.s_id = s_id;
 	}
-
+	public String getTypeString(){
+		switch (type) {
+		case Configure.HEAD_SERVER:
+			return "总店服务员";
+		case Configure.SERVER:
+			return "分店服务员";
+		case Configure.ADMINISTRATOR:
+			return "系统管理员";
+		case Configure.DIRECTOR:
+			return "经理";
+		default:
+			return "";
+		}
+	}
 }

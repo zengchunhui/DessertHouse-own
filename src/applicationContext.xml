@@ -13,26 +13,45 @@
 
 	<context:component-scan base-package="dessert" />
 
-	<import resource="spring-hibernate.xml" />
+	<import resource="spring-hibernate.xml" />  
 	
-	<!-- controller -->
-	<!-- <bean id="testController" class="dessert.controller.ajax.TestController" scope="prototype" /> -->
-	
-	
+         <!--方式一：使用JobDetailBean，任务类必须实现Job接口 -->     
+       <!--  <bean id="myjob" class="org.springframework.scheduling.quartz.JobDetailBean">    
+         <property name="name" value="exampleJob"></property>    
+         <property name="jobClass" value="dessert.qtzjob.StatisticsJob"></property>   
+         <property name="jobDataAsMap">  
+           <map>  
+               <entry key="service"><value>simple is the beat</value></entry>  
+           </map>  
+         </property>  
+        </bean>      --> 
+       <!--  方式二：使用MethodInvokingJobDetailFactoryBean，任务类可以不实现Job接口，通过targetMethod指定调用方法    
+                    定义目标bean和bean中的方法  
+        <bean id="SpringQtzJob" class="com.ncs.hj.SpringQtz"/>  
+        <bean id="SpringQtzJobMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject">  
+            <ref bean="SpringQtzJob"/>  
+        </property>  
+        <property name="targetMethod">  要执行的方法名称  
+            <value>execute</value>  
+        </property>  
+    </bean>   -->
+      
+    <!-- ======================== 调度触发器 ========================   -->
+   <!--  <bean id="CronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="myjob"></property>  
+        <property name="cronExpression" value="0 0 09 L * ?"></property>  
+    </bean>  -->
+     
+    <!-- ======================== 调度工厂 ========================  --> 
+    <!-- <bean id="SpringJobSchedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+        <property name="triggers">  
+            <list>  
+                <ref bean="CronTriggerBean"/>  
+            </list>  
+        </property>  
+    </bean>  -->     
 
-	<!-- service -->
-	<!-- <bean id="employeeService" class="dessert.service.impl.EmployeeServiceImpl"/>
-	<bean id="memberService" class="dessert.service.impl.MemberServiceImpl"/> -->
 	
-	<!-- dao -->
-	<!-- <bean id="memberDao" class="dessert.dao.impl.MemberDaoImpl" />
-	<bean id="accountDao" class="dessert.dao.impl.AccountDaoImpl" />
-	<bean id="bankcardDao" class="dessert.dao.impl.BankcardDaoImpl" />
-	<bean id="CardinfoDaoImpl" class="dessert.dao.impl.CardinfoDaoImpl" />
-	<bean id="EmployeeDaoImpl" class="dessert.dao.impl.EmployeeDaoImpl" />
-	<bean id="InventoryDaoImpl" class="dessert.dao.impl.InventoryDaoImpl" />
-	<bean id="memberDao" class="dessert.dao.impl.MemberDaoImpl" />
-	<bean id="memberDao" class="dessert.dao.impl.MemberDaoImpl" />
-	<bean id="memberDao" class="dessert.dao.impl.MemberDaoImpl" />
- -->
+	
 </beans>

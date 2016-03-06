@@ -12,6 +12,10 @@
 		ServletContext sc = request.getServletContext();
 	    int success = (int) sc.getAttribute("success");
 		String message=(String)sc.getAttribute("message");
+		int area=0;
+		if(success==1){
+			area=(int)sc.getAttribute("area");
+		}
 	%>
 </head>
 <body>
@@ -37,7 +41,11 @@
 		</div>
 		<div class="content">
 			<div class="wrapper">
-				<div style="height: 1px"></div>
+				<div class="tool-bar">
+					<a class="btn tool-btn" id="tool-btn-cancel" href="javascript:void(0)">取消会员卡</a>
+					<div class="clear"></div>
+				</div>
+				<!-- <div style="height: 1px"></div> -->
 				<form class="info-form">
 				<ul>
 					<%if(success==0){   
@@ -59,7 +67,21 @@
 						<li><span>性别:</span> 男<input type="radio" name="gender" value="1">女<input type="radio" name="gender" value="0" checked="checked"></li>
 						<%} %>
 						<li><span>生日:</span><input type="date" id="birthday" placeholder="<%=birthday%>"></li>
-						<li><span>送货地址:</span><input type="text" id="address" placeholder="<%=address%>"></li>
+						<li><span>送货地址:</span>
+						<select id="address-select">
+							<option value="0">玄武区</option>
+							<option value="1">鼓楼区</option>
+							<option value="2">建邺区</option>
+							<option value="3">秦淮区</option>
+							<option value="4">雨花台区</option>
+							<option value="5">浦口区</option>
+							<option value="6">栖霞区</option>
+							<option value="7">江宁区</option>
+							<option value="8">六合区</option>
+							<option value="9">溧水区</option>
+							<option value="10">高淳区</option>
+						</select>
+						<input type="text" id="address" placeholder="<%=address%>"></li>
 						<li><span>联系电话:</span><input type="text" id="phone" placeholder="<%=phone%>"></li>
 					<%} %>
 						<li><input class="btn modify-btn" value="修改"></li>
@@ -73,5 +95,8 @@
 	<script src="../js/jquery-2.1.4.min.js"></script>
 	<script src="../js/bootstrap.js"></script>
     <script src="../js/memberinfo.js"></script>
+    <script type="text/javascript">
+      $("#address-select")[<%=area%>].attr("selected","selected");
+    </script>
 </body>
 </html>

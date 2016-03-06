@@ -138,4 +138,11 @@ public class Util {
 		int days=(int)Math.abs((calendarB.getTimeInMillis()-calendarA.getTimeInMillis())/(24*60*60*1000));
 		return days;
 	}
+	public static int getType(String type){
+		if (type.equals("分店服务员")) {
+			return Configure.SERVER;
+		}else {
+			return Configure.HEAD_SERVER;
+		}
+	}
 }

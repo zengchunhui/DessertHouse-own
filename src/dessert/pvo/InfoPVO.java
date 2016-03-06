@@ -13,6 +13,7 @@ public class InfoPVO {
 	private int gender;
 	private String address;
 	private String phone;
+	private int area;
 	
 	public void setFromValids(FormValidator validator){
 		setId(validator.getS(Configure.ID));
@@ -21,6 +22,7 @@ public class InfoPVO {
 		setGender(validator.getI(Configure.GENDER));
 		setAddress(validator.getS(Configure.ADDRESS));
 		setPhone(validator.getS(Configure.PHONE));
+		setArea(validator.getI(Configure.AREA));
 	}
 
 	public String getId() {
@@ -69,6 +71,14 @@ public class InfoPVO {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public int getArea() {
+		return area;
+	}
+
+	public void setArea(int area) {
+		this.area = area;
 	}
 
 }

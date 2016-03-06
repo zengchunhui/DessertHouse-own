@@ -9,7 +9,9 @@ import org.springframework.util.DigestUtils;
 
 import dessert.configure.Configure;
 import dessert.dao.EmployeeDao;
+import dessert.dao.StoreDao;
 import dessert.entity.Employee;
+import dessert.entity.Store;
 import dessert.pvo.EmployeePVO;
 import dessert.pvo.EmployeeUpdatePVO;
 import dessert.rvo.ResultVO;
@@ -22,6 +24,8 @@ import dessert.service.EmployeeService;
 public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	EmployeeDao employeeDao;
+	@Autowired
+	StoreDao storeDao;
 
 	@Override
 	public EmployeeAddResultVO addEmployee(EmployeePVO employeePO) {
@@ -38,9 +42,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 			new_employee.setS_id(employeePO.getS_id());
 			new_employee.setType(employeePO.getType());
 			employeeDao.add(new_employee);
+			if (employeePO.getS_id()==0) {
+				rVO.setStore_name("总");
+			}else{
+				Store store=storeDao.getById(employeePO.getS_id()+"");
+				rVO.setStore_name(store.getName());
+			}
+			rVO.setType(new_employee.getTypeString());
 			rVO.setSuccess(Configure.SUCCESS_INT);
 			rVO.setMessage("添加成功");
 		}else {
+			rVO.setStore_name(" ");
 			rVO.setSuccess(Configure.FAIL);
 			rVO.setMessage("账户已存在");
 		}
@@ -69,6 +81,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			rVo.setMessage("该账号不存在");
 		}else {
 			employee.setName(po.getName());
+//			Store store=storeDao.getByName(po.getS_name());
 			employee.setS_id(po.getS_id());
 			employee.setType(po.getType());
 			employeeDao.update(employee);

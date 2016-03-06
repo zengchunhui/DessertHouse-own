@@ -12,7 +12,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import dessert.pvo.CartItemPVO;
 import dessert.util.Util;
-import javafx.geometry.Side;
 
 @Entity(name = "reservation")
 public class Reservation {

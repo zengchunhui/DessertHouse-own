@@ -12,6 +12,7 @@ public class InfoResultVO extends ResultVO {
 	private int gender;
 	private String address;
 	private String phone;
+	private int area;
 
 	public void setInfo(Memberinfo memberinfo){
 		setId(memberinfo.getId()+"");
@@ -20,6 +21,7 @@ public class InfoResultVO extends ResultVO {
 		setGender(memberinfo.getGender());
 		setAddress(memberinfo.getAddress());
 		setPhone(memberinfo.getPhone());
+		setArea(memberinfo.getArea());
 	}
 	
 	public String getId() {
@@ -68,6 +70,14 @@ public class InfoResultVO extends ResultVO {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public int getArea() {
+		return area;
+	}
+
+	public void setArea(int area) {
+		this.area = area;
 	}
 
 }

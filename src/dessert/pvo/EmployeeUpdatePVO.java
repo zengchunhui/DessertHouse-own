@@ -6,7 +6,7 @@ import dessert.util.FormValidator;
 public class EmployeeUpdatePVO {
 	private String name;
 	private int type;
-	private int s_id;
+	private int  s_id;
 
 	public EmployeeUpdatePVO() {
 
@@ -47,5 +47,6 @@ public class EmployeeUpdatePVO {
 	public void setS_id(int s_id) {
 		this.s_id = s_id;
 	}
+
 
 }

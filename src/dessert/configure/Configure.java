@@ -59,6 +59,14 @@ public class Configure {
 	public static final String  STORE_LIST			=	"store_list";
 	public static final String  P_DATE				=	"p_date";
 	public static final String  P_ID				=	"p_id";
+	public static final String  CONSUME_LIST		=	"consume_list";
+	public static final String  RECHARGE_LIST		=	"recharge_list";
+	public static final String  INVENTORY_LIST		= 	"inventory_list";
+	public static final String  RECEIPT_LIST		=	"receipt_list";
+	public static final String  AREA				=	"area";
+	public static final String  MONTH				=	"month";
+	public static final String  SALE_RECORD			=	"sale_record";
+	public static final String  STATISTICS			=	"statistics";
 	//
 	
 	public static final int  	FAIL				=	0;
@@ -78,6 +86,7 @@ public class Configure {
 	public static final int		PURCHARSE			=	1;//购买
 	public static final int		RESERVE				=	2;//预定
 	public static final int		CASH				=	3;//积分兑换
+	public static final int		CANCEL				=	4;//取消会员资格
 	public static final int		IMPASS				=	0;//未通过
 	public static final int		PASS				=	1;//ͨ通过
 	public static final int		BY_CARD				=	0;//会员卡购买

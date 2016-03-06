@@ -25,8 +25,8 @@
 		</div>
 		<div class="nav-btn-group">
 			<a class="nav-btn" href="/Desserthouse/ShowMemberInfo">个人资料</a>
-			<a class="nav-btn nav-btn-active" href="/Desserthouse/ShowCardInfo">账户管理</a>
-			<a class="nav-btn" href="javascript:void(0)">账单</a>
+			<a class="nav-btn" href="/Desserthouse/ShowCardInfo">账户管理</a>
+			<a class="nav-btn nav-btn-active" href="javascript:void(0)">账单</a>
 		</div>
 		<a class="manage-btn" href="/Desserthouse/ShowInventory"> <span>预定商品</span> <img
 			src="../img/signout.png">

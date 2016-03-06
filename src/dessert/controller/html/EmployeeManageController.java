@@ -45,6 +45,9 @@ public class EmployeeManageController extends HtmlController{
 		ServletContext sc = request().getServletContext();
 		ArrayList<EmploeeInfoResultVO> serverList=employeeService.getEmploeesByType(Configure.SERVER);//服务员列表
 		ArrayList<EmploeeInfoResultVO> headList=employeeService.getEmploeesByType(Configure.HEAD_SERVER);//总服务员
+//		for (int i = 0; i < serverList.size(); i++) {
+//			headList.add(serverList.get(i));
+//		}
 		Map<Integer, String> store=storeService.getStores();
 		sc.setAttribute(Configure.STORE_LIST, store);
 		sc.setAttribute(Configure.E_HEAD_SERVER, headList);

@@ -16,6 +16,7 @@ public class Memberinfo {
 	private int gender;
 	private String address;
 	private String phone;
+	private int area;
 
 	
 	public void setFromInfoPVO(InfoPVO po){
@@ -25,6 +26,7 @@ public class Memberinfo {
 		setGender(po.getGender());
 		setAddress(po.getAddress());
 		setPhone(po.getPhone());
+		setArea(po.getArea());
 	}
 	public int getId() {
 		return id;
@@ -72,6 +74,12 @@ public class Memberinfo {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public int getArea() {
+		return area;
+	}
+	public void setArea(int area) {
+		this.area = area;
 	}
 
 }

@@ -23,7 +23,7 @@
 		</div>
 		<div class="nav-btn-group">
 			<a class="nav-btn nav-btn-active" href="javascript:void(0)">店面管理</a>
-			<a class="nav-btn" href="javascript:void(0)">店员管理</a>
+			<a class="nav-btn" href="/Desserthouse/ManageEmployee">店员管理</a>
 		</div>
 
 		<a class="manage-btn" href="javascript:void(0)"> <span>登出</span> <img
@@ -58,18 +58,20 @@
 						<th>店名</th>
 						<th>地址</th>
 						<th>联系电话</th>
+						<th>修改</th>
+						<th>删除</th>
 					</tr>
 					<%
 						for (int i = 0; i < sotreList.size(); i++) {
 					%>
 					<tr>
 						<td><%=sotreList.get(i).getId()%></td>
-						<td><input type="text" id="<%=sotreList.get(i).getId() + "-name"%>" value="<%=sotreList.get(i).getName() %>"></td>
-						<td><input type="text" id="<%=sotreList.get(i).getId() + "-addr"%>" value="<%=sotreList.get(i).getAddress() %>"></td>
-						<td><input type="text" id="<%=sotreList.get(i).getId() + "-tel"%>" value="<%=sotreList.get(i).getTelphone() %>"></td>
+						<td><input type="text" class="short-input-td" id="<%=sotreList.get(i).getId() + "-name"%>" value="<%=sotreList.get(i).getName() %>"></td>
+						<td><input type="text" class="long-input-td" id="<%=sotreList.get(i).getId() + "-addr"%>" value="<%=sotreList.get(i).getAddress() %>"></td>
+						<td><input type="text" class="long-input-td" id="<%=sotreList.get(i).getId() + "-tel"%>" value="<%=sotreList.get(i).getTelphone() %>"></td>
 					    <td><a class="store-btn-edit" id="<%=sotreList.get(i).getId() + "-edit"%>"><img
-								src="../img/edit.png"></a>
-							 <a class="store-btn-delete" id="<%=sotreList.get(i).getId()  + "-delete"%>"><img
+								src="../img/edit.png"></a></td>
+						<td><a class="store-btn-delete" id="<%=sotreList.get(i).getId()  + "-delete"%>"><img
 								src="../img/delete.png"></a></td>
 					</tr>
 					<%

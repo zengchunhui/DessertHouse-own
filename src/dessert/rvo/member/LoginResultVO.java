@@ -7,6 +7,8 @@ public class LoginResultVO extends ResultVO{
 	private String member_id;
 	private String name;
 	private int state;
+	private String balance;// 余额
+	private int grade;// 等级
 	
 
 	public String getName() {
@@ -35,6 +37,22 @@ public class LoginResultVO extends ResultVO{
 
 	public void setState(int state) {
 		this.state = state;
+	}
+
+	public String getBalance() {
+		return balance;
+	}
+
+	public void setBalance(String balance) {
+		this.balance = balance;
+	}
+
+	public int getGrade() {
+		return grade;
+	}
+
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 	
 }

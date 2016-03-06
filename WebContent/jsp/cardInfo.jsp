@@ -31,6 +31,11 @@
 		</a>
 	</div>
 
+    <div class="toolkit">
+		<a href="/Desserthouse/Logout">登出<img
+			src="../img/goto.png" alt="进入" id="img-goto"></a>
+	</div>
+
 	<div class="right-site">
 		<div class="tab-btn-group">
 			<a class="tab-btn tab-btn-active" href="javascript:void(0)">账号信息</a>
