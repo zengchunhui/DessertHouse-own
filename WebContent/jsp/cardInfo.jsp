@@ -25,7 +25,7 @@
 			<a class="nav-btn nav-btn-active" href="javascript:void(0)">账户管理</a>
 			<a class="nav-btn" href="/Desserthouse/MemberRecord">账单</a>
 		</div>
-		<a class="manage-btn" href="/Desserthouse/ShowInventory"> <span>预定商品</span> <img
+		<a class="large-manage-btn" href="/Desserthouse/ShowInventory"> <span>预定商品</span> <img
 			src="../img/signout.png">
 			<div class="clear"></div>
 		</a>
@@ -66,21 +66,21 @@
 						int grade = (int) sc.getAttribute("grade");
 						int integral = (int) sc.getAttribute("integral");
 						String bankcard = (String) sc.getAttribute("bankcard");
-						%><li><span>卡号:</span><span> <%=id %></span></li>
-						<li><span>用户名:</span><span> <%=name %></span></li>
-						<li><span>等级:</span><span> <%=grade %></span></li>
-						<li><span>积分:</span><span id="span-integral"> <%=integral %></span><input class="btn confirm-btn" id="modify-integral" value="兑现"></li>
-						<li><span>状态:</span><span> <%=state %></span></li>
-						<li><span>余额:</span><span id="span-balance"> <%=balance %></span></li>
-						<li><span>累计:</span><span> <%=total %></span></li>
+						%><li><span>卡号:</span><span class='span-right'> <%=id %></span></li>
+						<li><span>用户名:</span><span class='span-right'> <%=name %></span></li>
+						<li><span>等级:</span><span class='span-right'> <%=grade %></span></li>
+						<li><span>积分:</span><span  class='span-right' id="span-integral"> <%=integral %></span><input class="btn confirm-btn" id="modify-integral" value="兑现"></li>
+						<li><span>状态:</span><span class='span-right'> <%=state %></span></li>
+						<li><span>余额:</span><span class='span-right' id="span-balance"> <%=balance %></span></li>
+						<li><span>累计:</span><span class='span-right'> <%=total %></span></li>
 						<%if(bankcard.equals(" ")){ 
 						%><li><span>银行卡:</span><input type="text" id="bankcard" placeholder="请输入银行卡号"></li>
-						<li><input class="btn confirm-btn" id="modify-bankcard" value="绑定银行卡"></li>
+						<li><span><input class="btn confirm-btn" id="modify-bankcard" value="绑定"></span>
 						<%
-						}else{ %><li><span>银行卡:</span><input type="text" id="bankcard" value="<%=bankcard %>"></li>
-						<li><input class="btn confirm-btn" id="modify-bankcard" value="修改银行卡"></li>
+						}else{ %><li><span>银行卡:</span><input type="text" class="long-input-td" id="bankcard" value="<%=bankcard %>"></li>
+						<li><span><input class="btn confirm-btn" id="modify-bankcard" value="修改"></span>
 			             <%}%>
-						<li><input class="btn confirm-btn" id="modify-recharge" value="充值"></li>
+						<span><input class="btn confirm-btn" id="modify-recharge" value="充值"></span></li>
 					<%} %>
 					</ul>
 				</form>
@@ -93,8 +93,9 @@
 		<div class="dialog recharge-dialog">
 			<div class="dialog-title">充值</div>
 			<a class="close-btn" href="javascript:void(0)"><b></b></a>
+			<div style="height: 1px"></div>
 			<div class="amount-input">
-				<input type="text" id="amount" placeholder="至少200方可激活">
+				<input type="text" class="short-input-td" id="amount" placeholder="至少200方可激活">
 			</div>
 			<a class="btn confirm-btn" id="confirm-recharge" href="javascript:void(0)">确认</a>
 			<div class="dialog-message"></div>

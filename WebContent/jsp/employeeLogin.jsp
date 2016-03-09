@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<img src="../img/logo.png" alt="logo" id="img-logo">
+	<img src="../img/logo.png" alt="logo" class="img-logo">
 	<div>
 		<a href="../index.jsp" id="worker-login">普通会员<img
 			src="../img/goto.png" alt="进入" id="img-goto"></a>

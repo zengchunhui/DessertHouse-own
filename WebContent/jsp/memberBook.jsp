@@ -49,7 +49,7 @@
 			<a class="nav-btn" href="javascript:void(0)">更多店面</a>
 		</div>
 
-		<a class="manage-btn" href="/Desserthouse/ShowMemberInfo"> <span>个人管理</span> <img
+		<a class="large-manage-btn" href="/Desserthouse/ShowMemberInfo"> <span>个人管理</span> <img
 			src="../img/signout.png">
 			<div class="clear"></div>
 		</a>
@@ -207,7 +207,7 @@
 
 	<div class="clear"></div>
 	<div class="modal-wrapper" style="display: none;">
-		<div class="dialog cart-dialog">
+		<div class="dialog cart-dialog" id="large-cart-dialog">
 			<div class="dialog-title">购物车</div>
 			<a class="close-btn" href="javascript:void(0)"><b></b></a>
 			<div class="cart-table">

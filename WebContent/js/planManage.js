@@ -1,3 +1,25 @@
+$("#impass").on("click",function(){
+	if ($("#pass").hasClass("tab-btn-active")) {
+		$("#pass").removeClass("tab-btn-active");
+		$("#pass-table").hide();
+	}
+
+	$("#impass").removeClass();
+	$("#impass").addClass("tab-btn tab-btn-active");
+	$("#plan-table").show();
+});
+
+$("#pass").on("click",function(){
+	if ($("#impass").hasClass("tab-btn-active")) {
+		$("#impass").removeClass("tab-btn-active");
+		$("#plan-table").hide();
+	}
+
+	$("#pass").removeClass();
+	$("#pass").addClass("tab-btn tab-btn-active");
+	$("#pass-table").show();
+});
+
 $(document).on("click",".plan-btn-pass",function(){
 	var button_id=$(this).attr("id");
 	var p_id=button_id.split("-")[0];

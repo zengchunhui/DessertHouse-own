@@ -25,7 +25,7 @@
 		</div>
 	</div>
 
-	<img src="./img/logo.png" alt="logo" id="img-logo">
+	<img src="./img/logo.png" alt="logo" class="img-logo">
 	<div class="toolkit">
 		<a href="./jsp/employeeLogin.jsp" id="worker-login">工作人员<img
 			src="./img/goto.png" alt="进入" id="img-goto"></a>
@@ -47,7 +47,7 @@
 				<div class="login-wrapper">
 					<a href="#" id="a-register">注册</a> <input
 						class="btn btn-default login-btn" type="submit"
-						value="登&nbsp&nbsp&nbsp录"></input>
+						value="登&nbsp&nbsp&nbsp陆"></input>
 				</div>
 			</form>
 			<div id="message">

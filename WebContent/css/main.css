@@ -9,13 +9,14 @@ html {
 	height: 100%;
 }
 
-a:link {
+a:link,a span {
 	color: inherit;
 	text-decoration: none;
 }
 
 a:visited {
 	outline: none;
+	color:inherit;
 }
 
 b {
@@ -44,10 +45,10 @@ option {
 
 .btn {
 	box-sizing:border-box;
-	padding: 10px 30px 10px 30px;
+	padding: 8px 20px 8px 20px;
 	border: 2px solid #ff8488;
 	border-radius: 6px;
-	font-size: 26px;
+	font-size: 20px;
 	color: #ff8488;
 }
 
@@ -68,12 +69,12 @@ input {
 }
 
 input[type="text"],input[type="date"],input[type="password"],select {
-	width: 500px;
-	height: 50px;
+	width: 250px;
+	height: 40px;
 	padding: 0px 10px 0px 10px;
 	border: 2px solid #ff8488;
 	border-radius: 6px;
-	font-size: 25px;
+	font-size: 21px;
 	font-family: inherit;
 }
 
@@ -115,7 +116,7 @@ input[type="radio"] {
 
 .left-bar{
 	height: 100%;
-	width: 300px;
+	width: 150px;
 	position: fixed;
 }
 
@@ -131,10 +132,11 @@ input[type="radio"] {
 
 .nav-btn {
 	display: block;
-	height: 60px;
-	font-size:30px;
-	line-height: 60px;
+	height: 40px;
+	font-size:25px;
+	line-height: 40px;
 	text-align: center;
+	color:#000;
 }
 
 .nav-btn:nth-child(odd) {
@@ -150,36 +152,64 @@ input[type="radio"] {
 	background-color: #fcf4f4;
 }
 
-.manage-btn {
-	height: 29px;
-	width: 160px;
+
+
+.large-manage-btn {
+	height: 25px;
+	width: 120px;
 	position: absolute;
 	margin: auto;
 	bottom: 40px;
-	left: 60px;
+	left: 15px;
+} 
+.large-manage-btn:hover {
+	transition:all 0.4s;
+	left: 20px;
+	width: 105px;
+}
+
+.large-manage-btn span {
+	display: inline-block;
+	font-size: 20px;
+	vertical-align: middle;
+}
+
+.large-manage-btn img {
+	height: 25px;
+	float: right;
+	vertical-align: middle;
+}
+
+.manage-btn {
+	height: 20px;
+	width: 80px;
+	position: absolute;
+	margin: auto;
+	bottom: 40px;
+	left: 30px;
 }
 
 .manage-btn:hover {
 	transition:all 0.4s;
-	left: 65px;
-	width: 150px;
+	left: 33px;
+	width: 75px;
 }
 
 .manage-btn span {
 	display: inline-block;
-	font-size: 29px;
+	font-size: 20px;
 	vertical-align: middle;
 }
 
 .manage-btn img {
-	height: 32px;
+	height: 25px;
 	float: right;
 	vertical-align: middle;
 }
 
 .right-site {
 	height: 100%;
-	padding-left: 300px;
+	padding-left: 150px;
 }
 
 .content {
@@ -191,20 +221,20 @@ input[type="radio"] {
 }
 
 .tab-btn-group {
-	height: 60px;
+	height: 50px;
 	margin-top: 20px;
 }
 
 .tab-btn {
 	display: inline-block;
-	width: 150px;
+	width: 125px;
 	height: 60px;
 	margin-right: -6px;
 	position: relative;
 	z-index: 0;
 	font-size: 20px;
 	text-align: center;
-	line-height: 60px;
+	line-height: 50px;
 	background-color: #ff8488;
 }
 
@@ -226,34 +256,35 @@ input[type="radio"] {
 }
 
 .book-table {
-	width: 960px;
+	width: 740px;
 	margin: 40px auto;
-	font-size: 	25px;
+	font-size: 21px;
+	overflow: auto;
 }
 
 .book-table th,.book-table td{
-	padding: 20px;
+	padding: 12px;
 	border-left: 0px;
 	border-right: 0px;
 }
 .book-table .short-input-td {
-	width:120px;
+	width:100px;
 }
 
 .book-table .long-input-td {
-	width:200px;
+	width:180px;
 }
 .book-table input {
 	border:none;
 }
 .sale-table {
-	width: 650x;
+	width: 260px;
 	margin: 40px;
-	font-size: 	25px;
+	font-size: 	20px;
 }
 
 .sale-table th,.sale-table td{
-	padding: 20px;
+	padding: 10px;
 	border-left: 0px;
 	border-right: 0px;
 }
@@ -263,19 +294,24 @@ input[type="radio"] {
 }
 
 .cart-dialog {
-	width: 800px;
-	height: 600px;
-	padding: 40px;
+	width: 500px;
+	height: 400px;
+	padding: 20px;
 	overflow: auto;
 }
+
+#large-cart-dialog {
+	width: 800px;
+}
+
 .close-btn {
     position: absolute;
-    right: 40px;
-    top: 40px;
+    right: 35px;
+    top: 35px;
 }
 
 .cart-dialog .dialog-title {
-	font-size: 30px;
+	font-size: 25px;
 	color: #ff8488;
 }
 
@@ -303,7 +339,7 @@ input[type="text"].num-input {
 	display: inline-block;
 	width: 45px;
 	height: 40px;
-	margin: 0 20px;
+	margin: 0 0px;
 	text-align: center;
 	vertical-align: middle;
 }
@@ -316,18 +352,26 @@ input[type="text"].num-input {
 	font-family: inherit;
 	font-size: 25px;
 	margin-top: 40px;
-	margin-left: 150px;
+	margin-left: 100px;
 }
 
 .info-form li {
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
-.info-form span {
+.info-form span{
 	display: inline-block;
 	width: 150px;
 	margin-right: 20px;
 	text-align: right;
+}
+
+.info-form .span-right {
+	text-align:left;
+}
+
+.info-form input {
+	display: inline-block;
 }
 
 .info-form .modify-btn{
@@ -336,10 +380,20 @@ input[type="text"].num-input {
 	margin-top:30px;
 	cursor: pointer;
 }
+.confirm-btn {
+	width:105px;
+}
+/* .info-form .confirm-btn{
+	display: inline-block;
+	margin-left: 50px;
+	margin-top:20px;
+	cursor: pointer;
+	float£ºnone;
+} */
 
 .tool-bar .date-input{
-	width: 200px;
-	height: 61px;
+	width: 140px;
+	height: 50px;
 	margin-top: 20px;
 	margin-right: 20px;
 	float: right;
@@ -348,14 +402,14 @@ input[type="text"].num-input {
 .toolkit {
     position: absolute;
 	right: 30px;
-	top: 20px;
-	font-size: 25px;
-	color: #343434;
+	top: 8px;
+	font-size: 21px;
+	color: #000;
 }
 
 #img-goto {
-	width: 40px;
-	height: 40px;
+	width: 25px;
+	height: 25px;
 }
 
 .toolkit:hover {
@@ -368,8 +422,8 @@ input[type="text"].num-input {
 }
 
 .tool-bar select{
-	width: 120px;
-	height: 61px;
+	width: 95px;
+	height: 50px;
 	margin-top: 20px;
 	margin-right: 20px;
 	float: right;
@@ -380,19 +434,19 @@ input[type="text"].num-input {
 }
 
 #edit-s-id,#add-s-id {
-	width:150px;
+	width:100px;
 }
 
 #edit-type,#add-type {
-	width:200px;
+	width:180px;
 }
 
 li .long-input-td {
-	width:300px;
+	width:180px;
 }
 
-li .short-input-td {
-	width:200px;
+li .short-input-td,div .short-input-td {
+	width:100px;
 }
 
 .plan-form li {
@@ -411,8 +465,28 @@ li .short-input-td {
 }
 
 .sale-little-table {
-	display:inline-block;
-	vertical-align: top;
-	
+	width: 200px;
+    margin-top: 35px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 16px;
+    margin-left: 50px;
+    margin-right: 0px;
 }
 
+#pname-card {
+	width:135px;
+}
+
+/* #book-table-cart {
+	width: 540px;
+	margin: 35px auto;
+	font-size: 19px;
+	overflow: auto;
+}
+
+#book-table-cart th,#book-table-cart td{
+	padding: 8px;
+	border-left: 0px;
+	border-right: 0px;
+} */

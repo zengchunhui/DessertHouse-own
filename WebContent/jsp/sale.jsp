@@ -70,8 +70,8 @@
 							<li><span>余额:</span><span id="balance-card"></span></li>
 							<li><span>总价:</span><span id="total-card"></span></li>
 							<li><span>积分:</span><span id="integral-card"></span></li>
-							<li><input class="btn confirm-btn reset-btn" type="button" value="重置"></li>
-							<li><input class="btn confirm-btn" id="commit-card" type="button" value="结账"></li>
+							<li><span><input class="btn confirm-btn reset-btn" type="button" value="重置"></span>
+							<span><input class="btn confirm-btn" id="commit-card" type="button" value="结账"></span></li>
 					</ul>
 				</form>
 				
@@ -88,8 +88,8 @@
 						<li><span>总价:</span><span id="amount-cash">0</span></li>
 						<li><span>总额:</span><input id="total-cash" type="text" placeholder="收取金额"></li>
 						<li><span>找零:</span><span id="charge-cash"></span></li>
-						<li><input class="btn confirm-btn reset-btn" type="button" value="重置"></li>
-						<li><input class="btn confirm-btn" id="commit-cash" type="button" value="结账"></li>
+						<li><span><input class="btn confirm-btn reset-btn" type="button" value="重置"></span>
+						<span><input class="btn confirm-btn" id="commit-cash" type="button" value="结账"></span></li>
 					</ul>
 				</form>
 				</div>

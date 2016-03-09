@@ -14,7 +14,7 @@
 	ServletContext sc = request.getServletContext();
 	Map<Integer, String> store = (Map<Integer, String>) sc.getAttribute("store_list");
 	List<PlanInfoResultVO> impassList = (List<PlanInfoResultVO>) sc.getAttribute("impass_plan");
-	
+	List<PlanInfoResultVO> passList = (List<PlanInfoResultVO>) sc.getAttribute("pass_plan");
 %>
 </head>
 <body>
@@ -28,14 +28,15 @@
 		    <a class="nav-btn" id="sale-record" href="javascript:void(0)">销售统计</a>
 		</div>
 
-		<a class="manage-btn" href="javascript:void(0)"> <span>登出</span> <img
+		<a class="manage-btn" href="/Desserthouse/Logout"> <span>登出</span> <img
 			src="../img/signout.png">
 			<div class="clear"></div>
 		</a>
 	</div>
 	<div class="right-site">
 		<div class="tab-btn-group">
-			<a class="tab-btn tab-btn-active" href="javascript:void(0)">未通过计划</a> 
+			<a class="tab-btn tab-btn-active" id="impass" href="javascript:void(0)">未审批计划</a>
+			<a class="tab-btn" id="pass" href="javascript:void(0)">已审批计划</a> 
 		</div>
 		<div class="content">
 			<div class="wrapper">
@@ -71,6 +72,41 @@
 						<td><%=impassList.get(i).getPrice() %></td>
 					    <td><a class="plan-btn-pass" id="<%=impassList.get(i).getId() + "-pass"%>"><img
 								src="../img/check transparent.png"></a></td>
+					</tr>
+					<%
+						    }
+						}
+					%>
+				</table>
+				
+				<%
+					if (passList.size() <= 0) {
+				%>
+				<form class="info-form">
+					<ul>
+						<li><span>当前已审批的计划项</span></li>
+					</ul>
+				</form>
+				<%
+					} else {
+				%>
+				<table class="book-table" id="pass-table" border="1" style="display: none">
+					<tr>
+						<th>日期</th>
+						<th>店面</th>
+						<th>商品名</th>
+						<th>数量</th>
+						<th>价格</th>
+					</tr>
+					<%
+						for (int i = 0; i < passList.size(); i++) {
+					%>
+					<tr>
+						<td><%=passList.get(i).getDate()%></td>
+						<td><%=store.get(passList.get(i).getS_id())%></td>
+						<td><%=passList.get(i).getP_name()%></td>
+						<td><%=passList.get(i).getP_num() %></td>
+						<td><%=passList.get(i).getPrice() %></td>
 					</tr>
 					<%
 						    }

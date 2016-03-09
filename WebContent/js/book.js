@@ -177,7 +177,7 @@ $(document).on("click",".add-btn",function(){
 $(document).on("change",".num-input",function(){
 //	alert("change");
 	 var num=$(this).val();
-	 alert(num);
+//	 alert(num);
 //	 num=parseInt(num)+1;
 //	 $(this).siblings("input").val(num);
 	 var send_date=$(this).parent().siblings(".book-sdate-td").html();
@@ -223,14 +223,14 @@ $(".confirm-btn").on("click",function(){
 
 $('.date-input').datepicker({
 	format: "yyyy-mm-dd",
-	startDate: "2016-03-07",
-	endDate: "2016-03-11"
+	startDate: "2016-03-09",
+	endDate: "2016-03-13"
 });
 
 $(document).on("change",".date-input",function(){
     var store_name=$(".nav-btn-active").html();
     var date=$(this).val();
-    alert(store_name);
+    //alert(store_name);
      $("#store-name").val(store_name);
 	 $("#date").val(date);
 	 $("#store-inventory").submit();

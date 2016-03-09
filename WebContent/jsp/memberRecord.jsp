@@ -28,10 +28,15 @@
 			<a class="nav-btn" href="/Desserthouse/ShowCardInfo">账户管理</a>
 			<a class="nav-btn nav-btn-active" href="javascript:void(0)">账单</a>
 		</div>
-		<a class="manage-btn" href="/Desserthouse/ShowInventory"> <span>预定商品</span> <img
+		<a class="large-manage-btn" href="/Desserthouse/ShowInventory"> <span>预定商品</span> <img
 			src="../img/signout.png">
 			<div class="clear"></div>
 		</a>
+	</div>
+	
+	<div class="toolkit">
+		<a href="/Desserthouse/Logout">登出<img
+			src="../img/goto.png" alt="进入" id="img-goto"></a>
 	</div>
 
 	<div class="right-site">

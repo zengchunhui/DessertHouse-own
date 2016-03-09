@@ -81,13 +81,13 @@
 			<a class="close-btn" href="javascript:void(0)"><b></b></a>
 			<form class="plan-form">
 			    <ul>
-						<li><input type="date" class="short-input-td" id="p_date" placeholder="2016/03/01"></li>
+						<li><input type="date" class="long-input-td" id="p_date" placeholder="2016/03/01"></li>
 						<li><select class="short-input-td" id="s_id">
 						<%for(Map.Entry<Integer,String> entry:store.entrySet()){ %>
 							<option value="<%=entry.getKey()%>"><%=entry.getValue() %></option>
 						<%} %>
 						</select></li>
-						<li><select class="short-input-td" id="p_name">
+						<li><select class="long-input-td" id="p_name">
 							<option value="南瓜派">南瓜派</option>
 							<option value="草莓派">草莓派</option>
 							<option value="起司蛋糕">起司蛋糕</option>

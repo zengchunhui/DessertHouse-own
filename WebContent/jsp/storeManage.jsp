@@ -93,9 +93,10 @@
 						<li><input type="text" id="name" placeholder="店名"></li>
 						<li><input type="text" id="addr" placeholder="地址"></li>
 						<li><input type="text" id="tel" placeholder="联系方式"></li>
+						<li><a class="btn confirm-btn" href="javascript:void(0)">添加</a></li>
 			    </ul>
 			</form>
-			<a class="btn confirm-btn" href="javascript:void(0)">添加</a>
+			
 			<div class="form-message"></div>
 			<div class="clear"></div>
 		</div>

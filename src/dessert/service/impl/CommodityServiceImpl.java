@@ -172,8 +172,8 @@ public class CommodityServiceImpl implements CommodityService{
 	public ResultVO payByCard(List<ReceiptItemPVO> pvos, int id,int s_id) {
 		double amount=0.0;
 		double Dvalue=0.0;
-//		Date date=Util.getCurrentDate();
-		Date date=Util.getDateFromString("2016-02-28");
+		Date date=Util.getCurrentDate();
+//		Date date=Util.getDateFromString("2016-02-28");
 		Account account=accountDao.getByID(s_id);
 		Timestamp currenttime=Util.getCurrentTimeStamp();
 		Cardinfo cardinfo=cardinfoDao.getById(id);
