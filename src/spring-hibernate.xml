@@ -15,8 +15,8 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://127.0.0.1:3306/dessert?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true" />
-		<property name="username" value="root" />
+			value="" />
+		<property name="username" value="" />
 		<property name="password" value="" />
 	</bean>
 
